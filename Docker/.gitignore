@@ -1,0 +1,9 @@
+# Docker
+/.env
+
+# Certificates generated and symlinked from host
+nginx/ssl
+
+# Databases persisted on host
+mysql/datastore
+

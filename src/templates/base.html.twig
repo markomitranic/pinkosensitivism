@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+
+    <title>{% block title %}Pinkosensitivism{% endblock %}</title>
+
+    {% block meta %}
+        <meta name="description" content="/pɪŋkoʊˈsɛnsətɪvɪz(ə)m/ - Neologism that represents the collective work of art in the age of virtual connectivity"/>
+
+        <meta property="og:url" content="{{ url('index') }}" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="Pinkosensitivism" />
+        <meta property="og:description" content="/pɪŋkoʊˈsɛnsətɪvɪz(ə)m/ - Neologism that represents the collective work of art in the age of virtual connectivity" />
+        <meta property="og:image" content="{{ asset('build/images/og-hero.png') }}" />
+
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@markomitranic">
+        <meta name="twitter:creator" content="@markomitranic">
+        <meta name="twitter:title" content="Pinkosensitivism">
+        <meta name="twitter:description" content="/pɪŋkoʊˈsɛnsətɪvɪz(ə)m/ - Neologism that represents the collective work of art in the age of virtual connectivity">
+        <meta name="twitter:image" content="{{ asset('build/images/og-hero.png') }}">
+    {% endblock %}
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
+    {% endblock %}
+</head>
+<body>
+
+    {% include '_Partials/header.html.twig' %}
+
+    {% block hero %}{% endblock %}
+
+    {% block body %}{% endblock %}
+
+    <div id="back-to-top">
+        <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <defs>
+                <rect id="path-1" x="0" y="0" width="40" height="40" rx="20"></rect>
+            </defs>
+            <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="Back-To-Top">
+                    <g>
+                        <g id="Rectangle-3">
+                            <use fill-opacity="0.3" fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                            <rect stroke="#FFFFFF" stroke-width="4" x="2" y="2" width="36" height="36" rx="18"></rect>
+                        </g>
+                        <path d="M12.5,22.5 L19.5,15.5" id="Line" stroke="#FFFFFF" stroke-width="4" stroke-linecap="square"></path>
+                        <path d="M19.5,15.5 L26.5622577,22.5" id="Line" stroke="#FFFFFF" stroke-width="4" stroke-linecap="square"></path>
+                    </g>
+                </g>
+            </g>
+        </svg>
+    </div>
+
+    {% block javascripts %}
+        <script src="{{ asset('build/js/app.js') }}"></script>
+    {% endblock %}
+
+</body>
+</html>
