@@ -1,3 +1,17 @@
 body {
-	background-color: #f7cac9;
+	background-color: $pink;
+}
+
+.back-to-top {
+	position: fixed;
+	bottom: 10px;
+	left: 50%;
+	transform: translateX(-50%);
+	transition: 0.2s bottom ease-out;
+
+	&:hover {
+		cursor: pointer;
+		transform: translateX(-50%);
+		bottom: 12px;
+	}
 }

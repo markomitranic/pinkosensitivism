@@ -1,0 +1,58 @@
+nav.header {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  padding: 0 35px;
+  box-sizing: border-box;
+
+  ul.menu {
+    display: flex;
+    width: 250px;
+    list-style-type: none;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-around;
+
+    li {
+      display: block;
+
+      a {
+        line-height: 16px;
+      }
+    }
+  }
+  ul.social {
+    display: flex;
+    list-style-type: none;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-around;
+
+    li {
+      a {
+
+        svg {
+          circle {
+            transition: 0.2s all ease-out;
+          }
+          path {
+            transition: 0.2s all ease-out;
+          }
+        }
+
+        &:hover {
+          svg {
+            circle {
+              fill-opacity: 0.6;
+            }
+            path {
+              fill: $pink;
+            }
+          }
+        }
+      }
+    }
+  }
+}

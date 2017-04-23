@@ -8,19 +8,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/markomitranic/pinkosensitivism.git"
+    "url": "git+https://github.com/markomitranic/ZentZent.git"
   },
   "author": "Marko Mitranic <marko.mitranic@gmail.com> (https://github.com/markomitranic)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/markomitranic/pinkosensitivism/issues"
+    "url": "https://github.com/markomitranic/ZentZent/issues"
   },
-  "homepage": "https://github.com/markomitranic/pinkosensitivism#readme",
+  "homepage": "https://github.com/markomitranic/ZentZent#readme",
   "devDependencies": {
-    "browser-sync": "^2.18.7",
+    "browser-sync": "^2.12.5",
     "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^3.1.1",
-    "gulp-sass": "^3.1.0",
-    "gulp-sourcemaps": "^2.4.1"
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.1",
+    "gulp-sourcemaps": "^2.2.0",
+    "gulp-uglify": "^2.1.2"
   }
 }

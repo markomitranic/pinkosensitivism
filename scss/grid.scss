@@ -1,0 +1,18 @@
+.instagram-wrap {
+  position: absolute;
+  top: 90vh;
+  width: 100%;
+
+  ul.instagram-grid {
+    max-width: 860px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+    list-style-type: none;
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+  }
+}
+
