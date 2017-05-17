@@ -5,30 +5,64 @@ null==d?void 0:d))},attrHooks:{type:{set:function(a,b){if(!o.radioValue&&"radio"
 
 jQuery(document).ready(function() {
     (function($){
-        var posts = [];
-        var limit = 20;
-        var $container = $('.instagram-grid');
 
-        var $template = $('.post-template');
+        var $backButton = $(".back-to-top");
+        var $html = $("html,body");
+        var $window = $(window);
 
-        getData(populate);
-        function getData(callback) {
-            $.getJSON( "/instagram.php", function( data ) {
-                posts = data.posts;
-                callback(0);
+        if ($backButton.length) {
+            var scrollTrigger = 100,
+                backToTop = function () {
+                    var scrollTop = $window.scrollTop();
+
+                    if (scrollTop > scrollTrigger) {
+                        $backButton.addClass('show');
+                    } else {
+                        $backButton.removeClass('show');
+                    }
+                };
+
+            $window.on('scroll', function () {
+                backToTop();
             });
+            backToTop();
+
         }
 
-        function populate(skip) {
-            for (i = 0; i < 20; i++) {
-                createPost(posts[i]);
-            }
-        }
-        function createPost(data) {
-            var $post = $template.clone();
-            $post.find('article').css('background-image', 'url(' + data.image + ')')
-            $post.appendTo($container).fadeIn('slow');
-        }
+        $backButton.on('click', function (e) {
+            e.preventDefault();
+            console.log('marko');
+            $html.animate({ scrollTop: 0 }, 700);
+        });
+
+    })(jQuery);
+});
+jQuery(document).ready(function() {
+    (function($){
+        // var posts = [];
+        // var limit = 20;
+        // var $container = $('.instagram-grid');
+        //
+        // var $template = $('.post-template');
+        //
+        // getData(populate);
+        // function getData(callback) {
+        //     $.getJSON( "/instagram.php", function( data ) {
+        //         posts = data.posts;
+        //         callback(0);
+        //     });
+        // }
+        //
+        // function populate(skip) {
+        //     for (i = 0; i < 20; i++) {
+        //         createPost(posts[i]);
+        //     }
+        // }
+        // function createPost(data) {
+        //     var $post = $template.clone();
+        //     $post.find('article').css('background-image', 'url(' + data.image + ')')
+        //     $post.appendTo($container).fadeIn('slow');
+        // }
 
 
 

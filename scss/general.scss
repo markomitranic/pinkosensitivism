@@ -3,12 +3,16 @@ body {
 }
 
 .back-to-top {
+	opacity: 0;
 	position: fixed;
 	bottom: 10px;
 	left: 50%;
 	transform: translateX(-50%);
-	transition: 0.2s bottom ease-out;
+	transition: 0.2s bottom ease-out, 0.2s opacity ease-out;
 
+	&.show {
+		opacity: 1;
+	}
 	&:hover {
 		cursor: pointer;
 		transform: translateX(-50%);
