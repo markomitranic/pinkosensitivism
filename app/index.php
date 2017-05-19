@@ -11,9 +11,25 @@ $posts = $instagram->get_instagram_data()->posts;
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Pinkosensitivism</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 	<link rel="stylesheet" href="css/style.css">
+
+    <title>Pinkosensitivism</title>
+    <meta name="description" content="/pɪŋkoʊˈsɛnsətɪvɪz(ə)m/ - Neologism that represents the collective work of art in the age of virtual connectivity"/>
+
+    <meta property="og:url" content="http://pinkosensitivism.com/" />
+    <meta property="og:type" ontent="article" />
+    <meta property="og:title" content="Pinkosensitivism" />
+    <meta property="og:description" content="/pɪŋkoʊˈsɛnsətɪvɪz(ə)m/ - Neologism that represents the collective work of art in the age of virtual connectivity" />
+    <meta property="og:image" content="http://pinkosensitivism.com/assets/og-hero.png" />
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@markomitranic">
+    <meta name="twitter:creator" content="@markomitranic">
+    <meta name="twitter:title" content="Pinkosensitivism">
+    <meta name="twitter:description" content="/pɪŋkoʊˈsɛnsətɪvɪz(ə)m/ - Neologism that represents the collective work of art in the age of virtual connectivity">
+    <meta name="twitter:image" content="http://pinkosensitivism.com/assets/og-hero.png">
+
 </head>
 <body>
 
@@ -56,6 +72,7 @@ $posts = $instagram->get_instagram_data()->posts;
 	</nav>
 
 	<h1 class="title">#PINKOSENSITIVISM</h1>
+    <p class="title-sub">/pɪŋkoʊˈsɛnsətɪvɪz(ə)m/ - Neologism that represents the </br>collective work of art in the age of virtual connectivity</p>
 
 	<div class="instagram-wrap">
         <ul class="social">
