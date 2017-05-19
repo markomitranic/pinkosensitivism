@@ -3,23 +3,32 @@ h1.title {
   padding: 0 30px;
   box-sizing: border-box;
   font-size: 110px;
+  line-height: 110px;
   font-weight: 700;
   letter-spacing: -2px;
   margin: 0 auto;
-  margin-top: calc(50vh - (72px / 2) - 48px);
+  margin-top: calc(50vh - (110px / 2) - 48px);
 
   @media screen and (max-width: 1200px) {
     font-size: 72px;
+    line-height: 72px;
+    margin-top: calc(50vh - (72px / 2) - 48px);
   }
   @media screen and (max-width: 740px) {
     font-size: 54px;
+    line-height: 54px;
+    margin-top: calc(50vh - (54px / 2) - 48px);
     letter-spacing: -0.63px;
   }
   @media screen and (max-width: 620px) {
     font-size: 34px;
+    line-height: 34px;
+    margin-top: calc(50vh - (34px / 2) - 48px);
   }
   @media screen and (max-width: 460px) {
     font-size: 24px;
+    line-height: 24px;
+    margin-top: calc(50vh - (24px / 2) - 48px);
   }
 
   &.title-small {

@@ -1,7 +1,13 @@
 .instagram-wrap {
-  position: relative;
-  top: 30vh;
+  margin-top: 25vh;
   width: 100%;
+
+  @media screen and (max-height: 700px) and (min-width: 640px) {
+    margin-top: 20vh;
+  }
+  @media screen and (max-height: 600px) and (min-width: 640px) {
+    margin-top: 15vh;
+  }
 
   ul.social {
     display: none;
