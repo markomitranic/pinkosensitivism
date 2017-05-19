@@ -24,7 +24,7 @@ $posts = $instagram->get_instagram_data()->posts;
 		</ul>
 		<ul class="social">
 			<li>
-				<a href="#" target="_blank" title="Open Pinkosensitivism Hashtag on Instagram">
+				<a href="https://www.instagram.com/pinkosensitivism/" target="_blank" title="Open Pinkosensitivism Hashtag on Instagram">
 					<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 						<g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 							<g id="instagram" fill-rule="nonzero" fill="#FFFFFF">
@@ -38,7 +38,7 @@ $posts = $instagram->get_instagram_data()->posts;
 				</a>
 			</li>
 			<li>
-				<a href="#" target="_blank" title="Open Pinkosensitivism Page on Facebook">
+				<a href="https://www.facebook.com/pinkosensitivism/?ref=br_rs" target="_blank" title="Open Pinkosensitivism Page on Facebook">
 					<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 						<g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 							<g id="facebook" fill-rule="nonzero" fill="#FFFFFF">
