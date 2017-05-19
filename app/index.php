@@ -19,9 +19,9 @@ $posts = $instagram->get_instagram_data()->posts;
 
 	<nav class="header">
 		<ul class="menu">
-			<li><a href="#">Explore</a></li>
+			<li><a href="/">Explore</a></li>
 			<li><a href="#">Manifesto</a></li>
-			<li><a href="#">About</a></li>
+			<li><a href="about.html">About</a></li>
 		</ul>
 		<ul class="social">
 			<li>
