@@ -6,10 +6,9 @@ ul.instagram-grid {
         display: block;
         width: 260px;
         height: 260px;
-        background-color: aquamarine;
+        background-color: rgba(255, 255, 255, 0.4);
         transition: 0.2s transform ease-out;
         box-shadow: 0 0 0px 0 rgba(0,0,0,0);
-        background-image: url('../assets/background.jpg');
         background-size: cover;
         backgorund-position: center center;
 

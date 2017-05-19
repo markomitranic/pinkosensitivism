@@ -1,3 +1,12 @@
+<?php
+
+include_once('instagram.php');
+
+$instagram = new Instagram();
+$posts = $instagram->get_instagram_data()->posts;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,12 +59,16 @@
 	<div class="instagram-wrap">
 
 		<ul class="instagram-grid">
-
+            <?php foreach ($posts as $post) : ?>
+            <li>
+                <a href="https://www.instagram.com/explore/tags/pinkosensitivism/" target="_blank" title="Visit Pinkosensitivism Hashtag on Instagram">
+                    <article data-src="<?=$post->image?>"></article>
+                </a>
+            </li>
+            <?php endforeach; ?>
 		</ul>
 
 	</div>
-
-	<li class="post-template"><a href="https://www.instagram.com/explore/tags/pinkosensitivism/" target="_blank" title="Visit Pinkosensitivism Hashtag on Instagram"><article></article></a></li>
 
 	<div class="back-to-top">
 		<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">

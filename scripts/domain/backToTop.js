@@ -26,7 +26,6 @@ jQuery(document).ready(function() {
 
         $backButton.on('click', function (e) {
             e.preventDefault();
-            console.log('marko');
             $html.animate({ scrollTop: 0 }, 700);
         });
 

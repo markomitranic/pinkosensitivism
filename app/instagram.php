@@ -1,15 +1,15 @@
 <?php
 
 class Instagram {
-    var $url = 'https://www.instagram.com/pinkosensitivism/media/';
-    var $fileLocation = 'cache.json';
-    var $data = array();
-    var $server_temporary;
-    var $local_temporary;
-    var $currentPostOnCache;
-    var $currentPostOnServer;
+    public $url = 'https://www.instagram.com/pinkosensitivism/media/';
+    public $fileLocation = 'cache.json';
+    public $data = array();
+    public $server_temporary;
+    public $local_temporary;
+    public $currentPostOnCache;
+    public $currentPostOnServer;
 
-    public function Return_instagram_data() {
+    public function get_instagram_data() {
 
         if (file_exists($this->fileLocation)) {
             $this->data = $this->GetFileContents();
@@ -19,8 +19,8 @@ class Instagram {
         }
 
         $this->UpdateCacheIfNeeded();
-        $this->display($this->data);
 
+        return $this->data;
     }
 
     public function UpdateCacheIfNeeded() {
@@ -176,10 +176,3 @@ class Instagram {
     }
 
 }
-
-
-
-
-
-$marko = new Instagram();
-echo $marko->Return_instagram_data();
