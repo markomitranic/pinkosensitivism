@@ -7,4 +7,15 @@ h1.title {
   letter-spacing: -2px;
   margin: 0 auto;
   margin-top: calc(50vh - (72px / 2) - 48px);
+
+  @media screen and (max-width: 740px) {
+    font-size: 54px;
+    letter-spacing: -0.63px;
+  }
+  @media screen and (max-width: 620px) {
+    font-size: 34px;
+  }
+  @media screen and (max-width: 460px) {
+    font-size: 24px;
+  }
 }
