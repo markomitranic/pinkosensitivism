@@ -3,7 +3,6 @@
 include_once('instagram.php');
 
 $instagram = new Instagram();
-$posts = $instagram->get_instagram_data()->posts;
 
 ?>
 
@@ -107,7 +106,7 @@ $posts = $instagram->get_instagram_data()->posts;
         </ul>
 
 		<ul class="instagram-grid">
-            <?php foreach ($posts as $post) : ?>
+            <?php foreach ($instagram->getData()->posts as $post) : ?>
             <li>
                 <a href="https://www.instagram.com/explore/tags/pinkosensitivism/" target="_blank" title="Visit Pinkosensitivism Hashtag on Instagram">
                     <article data-src="<?=$post->image?>"></article>
