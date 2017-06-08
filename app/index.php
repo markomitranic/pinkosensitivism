@@ -109,7 +109,7 @@ $instagram = new Instagram();
             <?php foreach ($instagram->getData()->posts as $post) : ?>
             <li>
                 <a href="https://www.instagram.com/explore/tags/pinkosensitivism/" target="_blank" title="Visit Pinkosensitivism Hashtag on Instagram">
-                    <article data-src="<?=$post->image?>" data-id="<?=$post->id?>"></article>
+                    <article data-src="<?=$post->image?>"></article>
                 </a>
             </li>
             <?php endforeach; ?>
