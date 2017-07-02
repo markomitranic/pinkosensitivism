@@ -35,10 +35,24 @@ $instagram = new Instagram();
 	<nav class="header">
 		<ul class="menu">
 			<li><a href="/">Explore</a></li>
-			<li><a href="#">Manifesto</a></li>
+			<li><a href="manifesto.html">Manifesto</a></li>
 			<li><a href="about.html">About</a></li>
 		</ul>
 		<ul class="social">
+            <li>
+                <a href="mailto:info.pinkosensitivism@gmail.com" target="_blank" title="Send in a submission or contact via Email message">
+                    <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="email" fill-rule="nonzero" fill="#FFFFFF">
+                                <g id="instagram" transform="translate(4.000000, 4.000000)">
+                                    <circle id="Oval" fill-opacity="0.289147418" cx="16" cy="16" r="16"></circle>
+                                    <path d="M23.7115831,21.4756047 C22.9159931,21.1820068 19.1018825,19.802771 15.2359396,18.4088021 C7.53707039,15.6279646 8.00551353,15.8138153 8.00551353,15.5053067 C8.00551353,15.3975594 8.03160718,15.330639 8.10953312,15.2488079 C8.2135527,15.1298776 10.5816846,13.5015984 10.6857041,13.4719546 C10.7302586,13.4607716 20.0684126,18.3454318 21.9011809,19.3380556 C22.0462047,19.4198867 22.1688627,19.4793518 22.1688627,19.4718965 C22.1688627,19.4607135 19.986759,17.8249789 17.3175739,15.8361812 L12.4662851,12.2153767 L12.4774681,10.7060277 C12.4849234,9.27850977 12.4886511,9.18940085 12.5555715,9.11502507 C12.5963983,9.07047061 12.6707741,9.03692163 12.7227839,9.03692163 C12.7859767,9.03692163 13.191227,9.2859651 13.904986,9.76186357 C14.5035424,10.1596586 15.0016293,10.4868055 15.0128123,10.4868055 C15.0202676,10.4868055 15.5183546,10.1522033 16.116911,9.74340276 C17.105807,9.07064811 17.2210096,9 17.3623058,9 C17.4849638,9 17.5444289,9.02236599 17.6299876,9.10401958 C17.6894528,9.15975704 18.035238,9.6988483 18.3994841,10.3011323 C18.9533085,11.223108 22.7265922,17.4459997 24.8156818,20.8846812 C25.1428287,21.4237725 25.4030552,21.8920381 25.3955998,21.9255871 C25.3881445,21.9701415 25.3473177,21.9962352 25.2729419,21.9999629 C25.2097492,22.0033355 24.5369945,21.776658 23.7115831,21.4756047 Z" id="Shape" transform="translate(16.697878, 15.500000) rotate(-180.000000) translate(-16.697878, -15.500000) "></path>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+            </li>
 			<li>
 				<a href="https://www.instagram.com/pinkosensitivism/" target="_blank" title="Open Pinkosensitivism Hashtag on Instagram">
 					<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
