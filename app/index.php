@@ -151,6 +151,7 @@ $instagram = new Instagram();
 		</svg>
 	</div>
 
-	<script src="scripts/scripts.min.js"></script>
+    <script src="scripts/vendor.js"></script>
+    <script src="scripts/scripts.min.js"></script>
 </body>
 </html>
