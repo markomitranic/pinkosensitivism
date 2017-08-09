@@ -2,15 +2,17 @@ const scssInput = [
         'scss/style.scss'
     ],
     jsInput = [
+        'scripts/domain/instagram.js',
+        'scripts/domain/*.js',
         'scripts/domain/**/*.js'
     ],
     vendorInput = [
         'scripts/vendor/jquery-3.1.1.min.js',
-        'scripts/vendor/**/*.js',
+        'scripts/vendor/*.js',
+        'scripts/vendor/**/*.js'
     ],
     scssOutput = 'app/css',
     jsOutput = 'app/scripts';
-
 
 // Start everything up.
 const gulp = require('gulp');
@@ -52,7 +54,7 @@ gulp.task('vendorScripts', function() {
         .pipe(gulp.dest(jsOutput));
 });
 
-gulp.task('watch', ['sass', 'vendorScripts', 'domainScripts'], function (){
+gulp.task('watch', ['sass', 'domainScripts', 'vendorScripts'], function (){
     gulp.watch('scss/**/*.scss', ['sass']);
     gulp.watch('scripts/domain/**/*.js', ['domainScripts']);
     gulp.watch('scripts/vendor/**/*.js', ['vendorScripts']);

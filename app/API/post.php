@@ -47,7 +47,10 @@ class postController
 
             return $decoded_params;
         } else {
-            die;
+            die(json_encode([
+                'error_code' => 400,
+                'error_message' => 'Invalid JSON'
+            ]));
         }
     }
 

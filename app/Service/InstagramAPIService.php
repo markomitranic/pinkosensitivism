@@ -2,21 +2,39 @@
 
 namespace Service;
 
+use Model\InstaPost;
+
 class InstagramAPIService
 {
     const API_ENDPOINT = 'https://www.instagram.com/pinkosensitivism/media/';
 
     /**
-     * @param string $skip_post
-     * @return string
+     * @param string $skip_until
+     * @return InstaPost[]
      */
-    public function getPostsStartingWith(string $skip_post = '') {
-        if ($skip_post) {
-            $apiData = $this->sendRequest(InstagramAPIService::API_ENDPOINT.'?max_id='.$skip_post);
+    public function getPostsStartingWith(string $skip_until = '') {
+        if ($skip_until) {
+            $apiData = $this->sendRequest(InstagramAPIService::API_ENDPOINT.'?max_id='.$skip_until);
         } else {
             $apiData = $this->sendRequest(InstagramAPIService::API_ENDPOINT);
         }
-        return $apiData;
+
+        return $this->transformResponse($apiData);
+    }
+
+    /**
+     * @param string $lastCacheTimestamp
+     * @return bool
+     */
+    public function isAllowedToCallAPI(string $lastCacheTimestamp)
+    {
+        $now = time();
+        $timeDifference = $now - $lastCacheTimestamp;
+        if ($timeDifference > 3600) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -33,6 +51,36 @@ class InstagramAPIService
         curl_close($ch);
         if (!$data) { die('Connection Error'); }
         return $data;
+    }
+
+    /**
+     * @param string $response
+     * @return InstaPost[]
+     */
+    private function transformResponse(string $response)
+    {
+        $response = json_decode($response, true);
+        $transformer = $this->getInstaPostTransformer();
+        $adaptedResponse = [];
+
+        foreach ($response['items'] as $post) {
+            array_push($adaptedResponse, [
+                'image' => $post['images']['standard_resolution']['url'],
+                'code' => $post['code'],
+                'link' => $post['link'],
+                'id' => $post['id']
+            ]);
+        }
+
+        return $transformer->arrayToPosts($adaptedResponse);;
+    }
+
+    /**
+     * @return InstaPostTransformer
+     */
+    private function getInstaPostTransformer()
+    {
+        return new InstaPostTransformer();
     }
 
 }
