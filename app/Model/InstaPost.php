@@ -24,17 +24,29 @@ class InstaPost
      */
     private $id;
 
-    public function __construct(
-        $imageUrl,
-        $code,
-        $link,
-        $id
-    )
+    /**
+     * InstaPost constructor.
+     * @param array $post
+     */
+    public function __construct(array $post)
     {
-        $this->setImage($imageUrl);
-        $this->setCode($code);
-        $this->setLink($link);
-        $this->setId($id);
+        $this->setImage($post['image']);
+        $this->setCode($post['code']);
+        $this->setLink($post['link']);
+        $this->setId($post['id']);
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        return [
+            'image' => $this->getImage(),
+            'code'  => $this->getCode(),
+            'link'  => $this->getLink(),
+            'id'    =>$this->getId()
+        ];
     }
 
     /**

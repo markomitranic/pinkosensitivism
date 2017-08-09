@@ -18,15 +18,8 @@ class postController
     {
         $request = $this->validateRequest();
 
-        $transformer = $this->getInstaPostTransformer();
-
         try {
-            $hydratedPosts = [];
-
-            foreach ($request as $post) {
-                array_push($hydratedPosts, $transformer->hydrate($post));
-            }
-
+            $hydratedPosts = $this->getInstaPostTransformer()->arrayToPosts($request);
             $this->getInstagramService()->acceptPosts($hydratedPosts);
         } catch (Exception $e) {
             return json_encode([
@@ -57,8 +50,6 @@ class postController
             die;
         }
     }
-
-
 
     /**
      * @return InstagramService

@@ -2,7 +2,6 @@
 
 namespace Service;
 
-use Exception;
 use Model\InstaPost;
 
 class InstaPostTransformer
@@ -32,5 +31,37 @@ class InstaPostTransformer
             $post['link'],
             $post['id']
         );
+    }
+
+    /**
+     * @param array $array
+     * @return InstaPost[]
+     */
+    public function arrayToPosts(array $array)
+    {
+        /** @var InstaPost[] $posts */
+        $posts = [];
+
+        foreach ($array as $post) {
+            array_push($posts, new InstaPost($post));
+        }
+
+        return $posts;
+    }
+
+    /**
+     * @param InstaPost[] $posts
+     * @return array
+     */
+    public function postsToArray($posts)
+    {
+        $array = [];
+
+        /** @var InstaPost $post */
+        foreach ($posts as $post) {
+            array_push($array, $post->toArray());
+        }
+
+        return $array;
     }
 }

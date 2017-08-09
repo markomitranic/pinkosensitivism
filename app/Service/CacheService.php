@@ -24,16 +24,10 @@ class CacheService
         }
 
         $cache = json_decode(file_get_contents($this->getCacheLocation()), true);
-        /** @var InstaPost[] $posts */
-        $posts = [];
-
-        foreach ($cache['posts'] as $post) {
-            array_push($posts, $this->getInstaPostTransformer()->hydrate($post));
-        }
 
         return [
             'last_cache'    => $cache['last_cache'],
-            'posts'         => $posts
+            'posts'         => $this->getInstaPostTransformer()->arrayToPosts($cache['posts'])
         ];
     }
 
@@ -44,7 +38,7 @@ class CacheService
     {
         $this->overwriteFile([
             'last_cache' => time(),
-            'posts' => $newCache
+            'posts' => $this->getInstaPostTransformer()->postsToArray($newCache)
         ]);
     }
 

@@ -16,14 +16,8 @@ class getController
     public function render()
     {
         $response = $this->getInstagramService()->getPosts();
-        $transformer = $this->getInstaPostTransformer();
-        $formattedPosts = [];
 
-        foreach ($response['posts'] as $post) {
-            array_push($formattedPosts, $transformer->transform($post));
-        }
-
-        $response['posts'] = $formattedPosts;
+        $response['posts'] = $this->getInstaPostTransformer()->postsToArray($response['posts']);
 
         return json_encode($response);
     }

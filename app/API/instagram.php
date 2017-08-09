@@ -106,22 +106,5 @@ class Instagram {
     }
 
 
-    private function GetFileContents() {
-        return json_decode(file_get_contents($this->fileLocation));
-    }
-
-    private function CreateNewFile() {
-        $this->data = array(
-            'last_cache' => time(),
-            'posts' => array()
-        );
-        $this->CreateOverwriteFile($this->data);
-    }
-
-    private function CreateOverwriteFile($data) {
-        $fp = fopen($this->fileLocation, 'w');
-        fwrite($fp, json_encode($data));
-        fclose($fp);
-    }
 
 }

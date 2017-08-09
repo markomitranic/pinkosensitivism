@@ -21,25 +21,11 @@ class InstagramService
     public function acceptPosts($posts)
     {
         $cs = $this->getCacheService();
-        $transformer = $this->getInstaPostTransformer();
         $cache = $cs->GetCache();
 
         $combinedPosts = array_merge($posts, $cache['posts']);
-        $posts = [];
 
-        foreach ($combinedPosts as $hydratedPost) {
-            array_push($posts, $transformer->transform($hydratedPost));
-        }
-
-        $cs->setCache($posts);
-    }
-
-    /**
-     * @return InstaPostTransformer
-     */
-    private function getInstaPostTransformer()
-    {
-        return new InstaPostTransformer();
+        $cs->setCache($combinedPosts);
     }
 
     /**
