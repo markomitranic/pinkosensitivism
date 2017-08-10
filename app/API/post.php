@@ -16,6 +16,7 @@ class postController
      */
     public function render()
     {
+        return 'false';
         $request = $this->validateRequest();
 
         try {
