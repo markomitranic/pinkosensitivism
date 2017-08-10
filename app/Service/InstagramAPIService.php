@@ -8,11 +8,40 @@ class InstagramAPIService
 {
     const API_ENDPOINT = 'https://www.instagram.com/pinkosensitivism/media/';
 
+
+    /**
+     * @param string $postId
+     * @return InstaPost[]
+     */
+    public function getPostsUntilId(string $postId = '')
+    {
+        $fetchedPosts = [];
+        $startQueryFromPost = '';
+
+        while (true) {
+            $singleApiQuery = $this->getPostsStartingWith($startQueryFromPost);
+            $lastItemKey = count($singleApiQuery) - 1;
+
+            foreach ($singleApiQuery as $key => $post) {
+                if ($post->getId() === $postId) {
+                    break 2;
+                }
+                if ($lastItemKey === $key) {
+                    $startQueryFromPost = $post->getId();
+                    break 1;
+                }
+                array_push($fetchedPosts, $post);
+            }
+        }
+
+        return $fetchedPosts;
+    }
+
     /**
      * @param string $skip_until
      * @return InstaPost[]
      */
-    public function getPostsStartingWith(string $skip_until = '') {
+    private function getPostsStartingWith(string $skip_until = '') {
         if ($skip_until) {
             $apiData = $this->sendRequest(InstagramAPIService::API_ENDPOINT.'?max_id='.$skip_until);
         } else {

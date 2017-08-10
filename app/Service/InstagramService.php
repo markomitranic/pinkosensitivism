@@ -15,22 +15,13 @@ class InstagramService
         $cache = $this->getCacheService()->GetCache();
 
         if ($this->getInstagramApiService()->isAllowedToCallAPI($cache['last_cache'])) {
-            $this->getNewData();
-//            $cache = $this->getCacheService()->GetCache();
+            $lastCachedPostId = ($cache['posts'][0]->getId()) ? $cache['posts'][0]->getId() : '';
+            $fetchedData = $this->getInstagramApiService()->getPostsUntilId($lastCachedPostId);
+
+            $cache = $this->acceptPosts($fetchedData, $cache);
         }
 
         return $cache;
-    }
-
-    private function getNewData()
-    {
-        $instagramData = $this->getInstagramApiService()->getPostsStartingWith();
-
-
-        //// SVE JE GOTOVO ON SAD TREBA DA IZBROJI KOLIKO POSTOVA SME DA DODA NA SPISAK IDA SNIMI TO
-//        $instagramData = $this->filterNewPosts()
-
-//        $this->acceptPosts()
     }
 
     /**
@@ -43,16 +34,26 @@ class InstagramService
     }
 
     /**
-     * @param InstaPost[] $posts
+     * @param InstaPost[] $newPosts
+     * @param null $cachedPosts
+     * @return array
      */
-    public function acceptPosts($posts)
+    public function acceptPosts($newPosts, $cachedPosts = null)
     {
         $cs = $this->getCacheService();
-        $cache = $cs->GetCache();
 
-        $combinedPosts = array_merge($posts, $cache['posts']);
+        if (null === $cachedPosts) {
+            $cachedPosts = $cs->GetCache();
+        }
+
+        $combinedPosts = array_merge($newPosts, $cachedPosts['posts']);
 
         $cs->setCache($combinedPosts);
+
+        return [
+            'last_update'   => time(),
+            'posts'         => $combinedPosts
+        ];
     }
 
     /**
