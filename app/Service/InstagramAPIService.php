@@ -2,12 +2,13 @@
 
 namespace Service;
 
+use Exception;
 use Model\InstaPost;
 
 class InstagramAPIService
 {
-    const API_ENDPOINT = 'https://www.instagram.com/pinkosensitivism/media/';
-
+    const API_ENDPOINT = 'https://api.instagram.com/v1/users/self/media/recent/';
+    const ACCESS_TOKEN = '50080987.9ab283e.d8a0bd72733d4c289f5b2c311a09b118';
 
     /**
      * @param string $postId
@@ -19,7 +20,13 @@ class InstagramAPIService
         $startQueryFromPost = '';
 
         while (true) {
-            $singleApiQuery = $this->getPostsStartingWith($startQueryFromPost);
+            try {
+                $singleApiQuery = $this->getPostsStartingWith($startQueryFromPost);
+            } catch (Exception $e) {
+                error_log($e->getMessage());
+                break;
+            }
+
             $lastItemKey = count($singleApiQuery) - 1;
 
             foreach ($singleApiQuery as $key => $post) {
@@ -43,9 +50,9 @@ class InstagramAPIService
      */
     private function getPostsStartingWith(string $skip_until = '') {
         if ($skip_until) {
-            $apiData = $this->sendRequest(InstagramAPIService::API_ENDPOINT.'?max_id='.$skip_until);
+            $apiData = $this->sendRequest($this::API_ENDPOINT.'?max_id='.$skip_until.'&access_token='.$this::ACCESS_TOKEN);
         } else {
-            $apiData = $this->sendRequest(InstagramAPIService::API_ENDPOINT);
+            $apiData = $this->sendRequest($this::API_ENDPOINT.'?access_token='.$this::ACCESS_TOKEN);
         }
 
         return $this->transformResponse($apiData);
@@ -68,7 +75,8 @@ class InstagramAPIService
 
     /**
      * @param string $url
-     * @return string
+     * @return array
+     * @throws Exception
      */
     private function sendRequest(string $url) {
         date_default_timezone_set("Europe/Belgrade");
@@ -78,17 +86,30 @@ class InstagramAPIService
         curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.3) Gecko/20070309 Firefox/2.0.0.3");
         $data = curl_exec($ch);
         curl_close($ch);
-        if (!$data) { die('Connection Error'); }
-        return $data;
+
+        if (!$data) {
+            throw new Exception('Server Connection failed.');
+        }
+
+        $response = json_decode($data, true);
+
+        if ($response === null && json_last_error() !== JSON_ERROR_NONE) {
+            throw new Exception('Unexpected Response');
+        } else if (array_key_exists('error_message', $response)) {
+            throw new Exception($response['error_message']);
+        } else if (!array_key_exists('items', $response) || !empty($response['items'])) {
+            throw new Exception('JSON does not contain posts');
+        }
+
+        return $response;
     }
 
     /**
-     * @param string $response
+     * @param array $response
      * @return InstaPost[]
      */
-    private function transformResponse(string $response)
+    private function transformResponse(array $response)
     {
-        $response = json_decode($response, true);
         $transformer = $this->getInstaPostTransformer();
         $adaptedResponse = [];
 
@@ -101,7 +122,7 @@ class InstagramAPIService
             ]);
         }
 
-        return $transformer->arrayToPosts($adaptedResponse);;
+        return $transformer->arrayToPosts($adaptedResponse);
     }
 
     /**
