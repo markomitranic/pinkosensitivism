@@ -17,7 +17,6 @@ class InstagramService
         if ($this->getInstagramApiService()->isAllowedToCallAPI($cache['last_cache'])) {
             $lastCachedPostId = ($cache['posts'][0]->getId()) ? $cache['posts'][0]->getId() : '';
             $fetchedData = $this->getInstagramApiService()->getPostsUntilId($lastCachedPostId);
-
             $cache = $this->acceptPosts($fetchedData, $cache);
         }
 

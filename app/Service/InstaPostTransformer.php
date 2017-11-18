@@ -14,7 +14,6 @@ class InstaPostTransformer
     public function transform(InstaPost $post) {
         return [
             'image' => $post->getImage(),
-            'code' => $post->getCode(),
             'link' => $post->getLink(),
             'id' => $post->getId()
         ];
@@ -25,12 +24,7 @@ class InstaPostTransformer
      * @return InstaPost
      */
     public function hydrate($post) {
-        return new InstaPost(
-            $post['image'],
-            $post['code'],
-            $post['link'],
-            $post['id']
-        );
+        return new InstaPost($post);
     }
 
     /**

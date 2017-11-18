@@ -31,7 +31,6 @@ class InstaPost
     public function __construct(array $post)
     {
         $this->setImage($post['image']);
-        $this->setCode($post['code']);
         $this->setLink($post['link']);
         $this->setId($post['id']);
     }
@@ -43,7 +42,6 @@ class InstaPost
     {
         return [
             'image' => $this->getImage(),
-            'code'  => $this->getCode(),
             'link'  => $this->getLink(),
             'id'    =>$this->getId()
         ];
@@ -63,22 +61,6 @@ class InstaPost
     public function setImage(string $imageUrl)
     {
         $this->imageUrl = $imageUrl;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCode()
-    {
-        return $this->code;
-    }
-
-    /**
-     * @param string $code
-     */
-    public function setCode(string $code)
-    {
-        $this->code = $code;
     }
 
     /**

@@ -8,7 +8,7 @@ use Model\InstaPost;
 class InstagramAPIService
 {
     const API_ENDPOINT = 'https://api.instagram.com/v1/users/self/media/recent/';
-    const ACCESS_TOKEN = '50080987.9ab283e.d8a0bd72733d4c289f5b2c311a09b118';
+    const ACCESS_TOKEN = '2966022865.bc6804b.6e4a1949176a4769b219f2628a022c38';
 
     /**
      * @param string $postId
@@ -97,7 +97,7 @@ class InstagramAPIService
             throw new Exception('Unexpected Response');
         } else if (array_key_exists('error_message', $response)) {
             throw new Exception($response['error_message']);
-        } else if (!array_key_exists('items', $response) || !empty($response['items'])) {
+        } else if (!array_key_exists('data', $response) || empty($response['data'])) {
             throw new Exception('JSON does not contain posts');
         }
 
@@ -113,10 +113,9 @@ class InstagramAPIService
         $transformer = $this->getInstaPostTransformer();
         $adaptedResponse = [];
 
-        foreach ($response['items'] as $post) {
+        foreach ($response['data'] as $post) {
             array_push($adaptedResponse, [
                 'image' => $post['images']['standard_resolution']['url'],
-                'code' => $post['code'],
                 'link' => $post['link'],
                 'id' => $post['id']
             ]);
