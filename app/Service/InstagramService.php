@@ -14,12 +14,14 @@ class InstagramService
     {
         $cache = $this->getCacheService()->GetCache();
 
-        if ($this->getInstagramApiService()->isAllowedToCallAPI($cache['last_cache'])) {
-            $lastCachedPostId = ($cache['posts'][0]->getId()) ? $cache['posts'][0]->getId() : '';
-            $fetchedData = $this->getInstagramApiService()->getPostsUntilId($lastCachedPostId);
-
-            $cache = $this->acceptPosts($fetchedData, $cache);
-        }
+//        Commented out, until the token situation with Instagram API is resolved.
+//        
+//        if ($this->getInstagramApiService()->isAllowedToCallAPI($cache['last_cache'])) {
+//            $lastCachedPostId = ($cache['posts'][0]->getId()) ? $cache['posts'][0]->getId() : '';
+//            $fetchedData = $this->getInstagramApiService()->getPostsUntilId($lastCachedPostId);
+//
+//            $cache = $this->acceptPosts($fetchedData, $cache);
+//        }
 
         return $cache;
     }
