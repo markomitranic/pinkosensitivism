@@ -11,7 +11,7 @@ class UpdateCacheCommand
     /**
      * Should be run as a CRON job, preferably not more often than 15min intervals.
      * crontab -e
-     * 0,15,30,45 * * * * php UpdateCacheCommand.php >> /var/log/nginx/error-pinkosensitivism.log
+     * 0,15,30,45 * * * * php UpdateCacheCommand.php
      */
     public function start()
     {
