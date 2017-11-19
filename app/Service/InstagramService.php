@@ -27,6 +27,8 @@ class InstagramService
         /** @var InstaPost $latestPost */
         $latestPost = $cache['posts'][0];
 
+        $now = date('d.m.Y H:i:s', time());
+
         if ($this->getInstagramApiService()->isAllowedToCallAPI($cache['last_cache'])) {
             $lastCachedPostId = ($latestPost->getId()) ? $latestPost->getId() : '';
             $fetchedData = $this->getInstagramApiService()->getPostsUntilId($lastCachedPostId);
@@ -34,10 +36,12 @@ class InstagramService
         }
 
         if (isset($newCache) && $newCache !== $cache) {
-            fwrite(STDOUT, 'true' . PHP_EOL);
+            fwrite(STDOUT, "[$now] Updated Cache".PHP_EOL);
+            error_log("[$now] Updated Cache");
             return true;
         } else {
-            fwrite(STDOUT, 'false' . PHP_EOL);
+            fwrite(STDOUT, "[$now] Cache Update failed, no new posts.".PHP_EOL);
+            error_log("[$now] Cache Update failed, no new posts.");
             return false;
         }
 
