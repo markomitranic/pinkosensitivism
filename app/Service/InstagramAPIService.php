@@ -59,6 +59,8 @@ class InstagramAPIService
     }
 
     /**
+     * Ensure that API is called at most once in 15 minutes, compared to the last cache update.
+     *
      * @param string $lastCacheTimestamp
      * @return bool
      */
@@ -66,7 +68,7 @@ class InstagramAPIService
     {
         $now = time();
         $timeDifference = $now - $lastCacheTimestamp;
-        if ($timeDifference > 3600) {
+        if ($timeDifference > 900) {
             return true;
         } else {
             return false;

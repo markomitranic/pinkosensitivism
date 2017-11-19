@@ -2,8 +2,6 @@
 
 namespace Service;
 
-use Model\InstaPost;
-
 class CacheService
 {
 

@@ -8,19 +8,39 @@ class InstagramService
 {
 
     /**
+     * Simply returns the full post cache from the disk.
+     *
      * @return array
      */
-    public function getPosts()
+    public function getCache()
     {
-        $cache = $this->getCacheService()->GetCache();
+        return $this->getCacheService()->GetCache();
+    }
+
+    /**
+     * Updates the cache on disk, if needed.
+     */
+    public function updateCache()
+    {
+        $cache = $this->getCache();
+
+        /** @var InstaPost $latestPost */
+        $latestPost = $cache['posts'][0];
 
         if ($this->getInstagramApiService()->isAllowedToCallAPI($cache['last_cache'])) {
-            $lastCachedPostId = ($cache['posts'][0]->getId()) ? $cache['posts'][0]->getId() : '';
+            $lastCachedPostId = ($latestPost->getId()) ? $latestPost->getId() : '';
             $fetchedData = $this->getInstagramApiService()->getPostsUntilId($lastCachedPostId);
-            $cache = $this->acceptPosts($fetchedData, $cache);
+            $newCache = $this->addPostsToCache($fetchedData, $cache);
         }
 
-        return $cache;
+        if (isset($newCache) && $newCache !== $cache) {
+            fwrite(STDOUT, 'true' . PHP_EOL);
+            return true;
+        } else {
+            fwrite(STDOUT, 'false' . PHP_EOL);
+            return false;
+        }
+
     }
 
     /**
@@ -28,7 +48,7 @@ class InstagramService
      * @param null $cachedPosts
      * @return array
      */
-    public function acceptPosts($newPosts, $cachedPosts = null)
+    public function addPostsToCache($newPosts, $cachedPosts = null)
     {
         $cs = $this->getCacheService();
 
@@ -60,14 +80,6 @@ class InstagramService
     private function getInstagramApiService()
     {
         return new InstagramAPIService();
-    }
-
-    /**
-     * @return InstaPostTransformer
-     */
-    private function getInstaPostTransformer()
-    {
-        return new InstaPostTransformer();
     }
 
 }

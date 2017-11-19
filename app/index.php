@@ -1,3 +1,15 @@
+<?php
+
+require(dirname(__DIR__) . '/app/Kernel.php');
+
+use Model\InstaPost;
+use Service\InstagramService;
+
+$service = new InstagramService();
+$posts = $service->getCache()['posts'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +21,7 @@
     <meta name="description" content="/pɪŋkoʊˈsɛnsətɪvɪz(ə)m/ - Neologism that represents the collective work of art in the age of virtual connectivity"/>
 
     <meta property="og:url" content="http://pinkosensitivism.com/" />
-    <meta property="og:type" ontent="article" />
+    <meta property="og:type" content="article" />
     <meta property="og:title" content="Pinkosensitivism" />
     <meta property="og:description" content="/pɪŋkoʊˈsɛnsətɪvɪz(ə)m/ - Neologism that represents the collective work of art in the age of virtual connectivity" />
     <meta property="og:image" content="http://pinkosensitivism.com/assets/og-hero.png" />
@@ -112,11 +124,24 @@
         </ul>
 
 		<ul id="instagram-grid" class="instagram-grid">
-            <li>
-                <a href="https://www.instagram.com/explore/tags/pinkosensitivism/" target="_blank" title="Visit Pinkosensitivism Hashtag on Instagram">
-                    <article></article>
-                </a>
-            </li>
+            <?php
+                for ($i=0; $i < count($posts); $i++) :
+                    if ($i < 12) : ?>
+                        <li>
+                            <a href="https://www.instagram.com/explore/tags/pinkosensitivism/" target="_blank" title="Visit Pinkosensitivism Hashtag on Instagram">
+                                <article style="background-image: url('<?=$posts[$i]->getImage()?>');">
+                                    <img src="<?=$posts[$i]->getImage()?>" alt="Visit Pinkosensitivism Hashtag on Instagram">
+                                </article>
+                            </a>
+                        </li>
+                    <?php else : ?>
+                        <li>
+                            <a href="https://www.instagram.com/explore/tags/pinkosensitivism/" target="_blank" title="Visit Pinkosensitivism Hashtag on Instagram">
+                                <article class="lazy" data-src="<?=$posts[$i]->getImage()?>"></article>
+                            </a>
+                        </li>
+                    <?php endif; ?>
+            <?php endfor; ?>
 		</ul>
 
 	</div>

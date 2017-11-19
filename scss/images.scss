@@ -15,7 +15,8 @@ ul.instagram-grid {
         transition: 0.2s transform ease-out;
         box-shadow: 0 0 0px 0 rgba(0,0,0,0);
         background-size: cover;
-        backgorund-position: center center;
+        background-position: center center;
+        overflow: hidden;
 
         &:hover {
           transform: scale(1.05);
@@ -29,6 +30,11 @@ ul.instagram-grid {
         @media screen and (max-width: 740px) {
           width: calc(50vw - 2px);
           height: calc(50vw - 2px);
+        }
+
+        img {
+          display: block;
+          max-width: 100%;
         }
 
       }
