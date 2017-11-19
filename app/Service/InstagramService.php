@@ -36,11 +36,9 @@ class InstagramService
         }
 
         if (isset($newCache) && $newCache !== $cache) {
-            fwrite(STDOUT, "[$now] Updated Cache".PHP_EOL);
             error_log("[$now] Updated Cache");
             return true;
         } else {
-            fwrite(STDOUT, "[$now] Cache Update failed, no new posts.".PHP_EOL);
             error_log("[$now] Cache Update failed, no new posts.");
             return false;
         }
