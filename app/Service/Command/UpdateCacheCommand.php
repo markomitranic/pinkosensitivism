@@ -8,6 +8,11 @@ use Service\InstagramService;
 class UpdateCacheCommand
 {
 
+    /**
+     * Should be run as a CRON job, preferably not more often than 15min intervals.
+     * crontab -e
+     * 0,15,30,45 * * * * php UpdateCacheCommand.php >> /var/log/nginx/error-pinkosensitivism.log
+     */
     public function start()
     {
         $this->getInstagramService()->updateCache();
@@ -23,9 +28,6 @@ class UpdateCacheCommand
 
 }
 
-/**
- * Should be run as a CRON job, preferably not more often than 15min intervals.
- */
 $controller = new UpdateCacheCommand();
 $controller->start();
 
