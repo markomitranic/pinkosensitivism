@@ -8,7 +8,7 @@ use Model\InstaPost;
 class InstagramAPIService
 {
     const API_ENDPOINT = 'https://api.instagram.com/v1/users/self/media/recent/';
-    const ACCESS_TOKEN = '2966022865.bc6804b.6e4a1949176a4769b219f2628a022c38';
+    const ACCESS_TOKEN = '2966022865.bc6804b.46c789e32ff148e091a82f656bb6e853';
 
     /**
      * @param string $postId
