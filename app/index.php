@@ -32,7 +32,6 @@ $posts = $service->getCache()['posts'];
     <meta name="twitter:title" content="Pinkosensitivism">
     <meta name="twitter:description" content="/pɪŋkoʊˈsɛnsətɪvɪz(ə)m/ - Neologism that represents the collective work of art in the age of virtual connectivity">
     <meta name="twitter:image" content="http://pinkosensitivism.com/assets/og-hero.png">
-
 </head>
 <body>
 
