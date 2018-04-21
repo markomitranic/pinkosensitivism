@@ -1,3 +1,4 @@
+/config/parameters.yml
 
 ###> symfony/framework-bundle ###
 /.env
