@@ -28,7 +28,7 @@ class InstaPostRepository extends ServiceEntityRepository
         $qb = $this->createQueryBuilder('InstaPost');
 
         $results = $qb
-            ->orderBy('InstaPost.dateTime')
+            ->orderBy('InstaPost.dateTime', 'DESC')
             ->getQuery()
             ->getResult();
 
