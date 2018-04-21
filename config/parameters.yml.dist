@@ -1,4 +1,8 @@
 parameters:
-  locale: 'en'
-  instagram.username: 'instaccount'
-  instagram.apikey: '29dawudau.543ub553rig.eoh33rtihn423ornig22oer2oi.greg983489578h'
+    locale: 'en'
+    database.host: 'localhost'
+    database.name: 'pinko'
+    database.user: 'root'
+    database.pass: ''
+    instagram.username: 'instaccount'
+    instagram.apikey: '29dawudau.543ub553rig.eoh33rtihn423ornig22oer2oi.greg983489578h'

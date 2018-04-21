@@ -2,8 +2,13 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 use JsonSerializable;
+use Symfony\Component\HttpFoundation\File\File;
 
+/**
+ * @ORM\Entity(repositoryClass="App\Repository\InstaPostRepository")
+ */
 class InstaPost implements JsonSerializable
 {
 
@@ -11,150 +16,149 @@ class InstaPost implements JsonSerializable
     const TYPE_IMAGE = "image";
 
     /**
-     * @var string
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=120)
      */
-    private $type = "image";
+    private $instagramId;
 
     /**
-     * @var string
+     * @var \DateTime
+     * @ORM\Column(type="datetime")
+     */
+    private $dateTime;
+
+    /**
+     * @ORM\Column(type="string", length=64, columnDefinition="enum('video', 'image')")
+     */
+    private $type;
+
+    /**
+     * @ORM\Column(type="string", length=1200, nullable=true)
      */
     private $link;
 
     /**
-     * @var string
+     * @ORM\Column(type="string", length=1200)
+     * @var File
      */
-    private $thumbnailUrl;
+    private $thumbnail;
 
     /**
-     * @var string|null
+     * @ORM\Column(type="integer", nullable=true)
      */
-    private $videoUrl = null;
+    private $likeCount;
 
     /**
-     * @var int
+     * @ORM\Column(type="integer", nullable=true)
      */
-    private $likeCount = 0;
+    private $commentCount;
 
-    /**
-     * @var int
-     */
-    private $commentCount = 0;
-
-    /**
-     * @return string
-     */
-    public function getId(): string
+    public function getId()
     {
         return $this->id;
     }
 
     /**
-     * @param string $id
+     * @return string
      */
-    public function setId(string $id): void
+    public function getInstagramId(): string
     {
-        $this->id = $id;
+        return $this->instagramId;
     }
 
     /**
-     * @return string
+     * @param string $instagramId
      */
-    public function getType(): string
+    public function setInstagramId(string $instagramId): void
+    {
+        $this->instagramId = $instagramId;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateTime(): \DateTime
+    {
+        return $this->dateTime;
+    }
+
+    /**
+     * @param \DateTime $dateTime
+     */
+    public function setDateTime(\DateTime $dateTime): void
+    {
+        $this->dateTime = $dateTime;
+    }
+
+    public function getType(): ?string
     {
         return $this->type;
     }
 
-    /**
-     * @param string $type
-     */
-    public function setType(string $type): void
+    public function setType(string $type): self
     {
         $this->type = $type;
+
+        return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getLink(): string
+    public function getLink(): ?string
     {
         return $this->link;
     }
 
-    /**
-     * @param string $link
-     */
-    public function setLink(string $link): void
+    public function setLink(?string $link): self
     {
         $this->link = $link;
+
+        return $this;
     }
 
     /**
-     * @return string
+     * @return File
      */
-    public function getThumbnailUrl(): string
+    public function getThumbnail(): File
     {
-        return $this->thumbnailUrl;
+        return new File($this->thumbnail);
     }
 
     /**
-     * @param string $thumbnailUrl
+     * @param File $thumbnail
      */
-    public function setThumbnailUrl(string $thumbnailUrl): void
+    public function setThumbnail(File $thumbnail): void
     {
-        $this->thumbnailUrl = $thumbnailUrl;
+        $this->thumbnail = $thumbnail;
     }
 
-    /**
-     * @return null|string
-     */
-    public function getVideoUrl(): ?string
-    {
-        return $this->videoUrl;
-    }
-
-    /**
-     * @param null|string $videoUrl
-     */
-    public function setVideoUrl(?string $videoUrl): void
-    {
-        $this->videoUrl = $videoUrl;
-    }
-
-    /**
-     * @return int
-     */
-    public function getLikeCount(): int
+    public function getLikeCount(): ?int
     {
         return $this->likeCount;
     }
 
-    /**
-     * @param int $likeCount
-     */
-    public function setLikeCount(int $likeCount): void
+    public function setLikeCount(?int $likeCount): self
     {
         $this->likeCount = $likeCount;
+
+        return $this;
     }
 
-    /**
-     * @return int
-     */
-    public function getCommentCount(): int
+    public function getCommentCount(): ?int
     {
         return $this->commentCount;
     }
 
-    /**
-     * @param int $commentCount
-     */
-    public function setCommentCount(int $commentCount): void
+    public function setCommentCount(?int $commentCount): self
     {
         $this->commentCount = $commentCount;
+
+        return $this;
     }
 
     /**
@@ -170,15 +174,12 @@ class InstaPost implements JsonSerializable
             'id' => $this->getId(),
             'type' => $this->getType(),
             'link' => $this->getLink(),
-            'thumbnailUrl' => $this->getThumbnailUrl(),
+            'thumbnailUrl' => $this->getThumbnail(),
             'likeCount' => $this->getLikeCount(),
-            'commentCount' => $this->getCommentCount()
+            'commentCount' => $this->getCommentCount(),
+            'dateTime' => $this->getDateTime()
         ];
-
-        if ($this->getType() === self::TYPE_VIDEO) {
-            $json['videoUrl'] = $this->getVideoUrl();
-        }
-
         return $json;
     }
+
 }

@@ -8,8 +8,9 @@ use App\Transformer\InstaPostTransformer;
 use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Psr7\Request;
+use Monolog\Logger;
 use Psr\Container\ContainerInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\Container;
 
 class InstagramApiService
@@ -28,13 +29,27 @@ class InstagramApiService
     private $container;
 
     /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    /**
+     * @var InstaPostTransformer
+     */
+    private $instaPostTransformer;
+
+    /**
      * @var string
      */
     private $apiKey;
 
     public function __construct(
+        LoggerInterface $logger,
+        InstaPostTransformer $instaPostTransformer,
         ContainerInterface $container
     ) {
+        $this->logger = $logger;
+        $this->instaPostTransformer = $instaPostTransformer;
         $this->container = $container;
         $this->apiKey = $this->container->getParameter('instagram.apikey');
         $this->api = new Client([
@@ -69,29 +84,29 @@ class InstagramApiService
         try {
             $response = $this->api->get($url);
         } catch (RequestException $e) {
-            Logger::getLogger()->error('Cannot contact Instagram API: '.$e->getMessage());
+            $this->logger->error('Cannot contact Instagram API: '.$e->getMessage());
             throw $e;
         }
 
         if ($response->getStatusCode() === 200) {
             $data = json_decode($response->getBody(), true);
         } else {
-            Logger::getLogger()->error('Request returned but not 200');
+            $this->logger->error('Request returned but not 200');
             throw new Exception('Request returned but not 200');
         }
 
         if (json_last_error() !== JSON_ERROR_NONE) {
-            Logger::getLogger()->error('Unable to deserialize JSON response.');
+            $this->logger->error('Unable to deserialize JSON response.');
             throw new Exception('Unable to deserialize JSON response.');
         }
 
         if (array_key_exists('error_message', $data)) {
-            Logger::getLogger()->error('Instagram returned an error.');
+            $this->logger->error('Instagram returned an error.');
             throw new Exception('Instagram returned an error.');
         }
 
         if (!array_key_exists('data', $data) || empty($data['data'])) {
-            Logger::getLogger()->error('JSON does not contain posts.');
+            $this->logger->error('JSON does not contain posts.');
             throw new Exception('JSON does not contain posts.');
         }
 
@@ -124,7 +139,7 @@ class InstagramApiService
      */
     private function getInstaPostTransformer()
     {
-        return new InstaPostTransformer();
+        return $this->instaPostTransformer;
     }
 
 }

@@ -23,7 +23,6 @@ class InstagramController extends ApiController
         LoggerInterface $logger
     ) {
         $this->api = $api;
-        Logger::init($logger);
     }
 
     /**

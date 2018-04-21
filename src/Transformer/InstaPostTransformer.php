@@ -3,10 +3,30 @@
 namespace App\Transformer;
 
 use App\Entity\InstaPost;
-use App\Logger;
+use App\PostUploadService;
+use DateTime;
+use Psr\Log\LoggerInterface;
 
 class InstaPostTransformer
 {
+
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    /**
+     * @var PostUploadService
+     */
+    private $postUploadService;
+
+    public function __construct(
+        LoggerInterface $logger,
+        PostUploadService $postUploadService
+    ) {
+        $this->logger = $logger;
+        $this->postUploadService = $postUploadService;
+    }
 
     /**
      * @param InstaPost $post
@@ -26,21 +46,28 @@ class InstaPostTransformer
         $instaPost = new InstaPost();
 
         try {
-            $instaPost->setId($post['id']);
+            $instaPost->setInstagramId($post['id']);
             $instaPost->setType($post['type']);
             $instaPost->setLink($post['link']);
-            $instaPost->setThumbnailUrl($post['images']['standard_resolution']['url']);
+            $instaPost->setThumbnail($this->handleUpload($post['images']['standard_resolution']['url']));
             $instaPost->setLikeCount($post['likes']['count']);
             $instaPost->setCommentCount($post['comments']['count']);
-
-            if ($instaPost->getType() === InstaPost::TYPE_VIDEO) {
-                $instaPost->setVideoUrl($post['videos']['standard_resolution']['url']);
-            }
+            $instaPost->setDateTime((new DateTime())->setTimestamp($post['created_time']));
         } catch (\Exception $e) {
-            Logger::getLogger()->error('Cannot hydrate InstaPost: '.$e->getMessage());
+            $this->logger->error('Cannot hydrate InstaPost: '.$e->getMessage());
             throw $e;
         }
 
         return $instaPost;
+    }
+
+    /**
+     * @param string $url
+     * @return mixed
+     * @throws \Exception
+     */
+    public function handleUpload(string $url)
+    {
+        return $this->postUploadService->uploadPost($url);
     }
 }

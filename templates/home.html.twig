@@ -10,6 +10,7 @@
 {% endblock %}
 
 {% block body %}
+
     <div class="instagram-wrap">
         <ul class="social">
             <li>
@@ -43,24 +44,23 @@
         </ul>
 
         <ul id="instagram-grid" class="instagram-grid">
-            <?php
-                for ($i=0; $i < count($posts); $i++) :
-                    if ($i < 12) : ?>
-            <li>
-                <a href="https://www.instagram.com/explore/tags/pinkosensitivism/" target="_blank" title="Visit Pinkosensitivism Hashtag on Instagram">
-                    <article style="background-image: url('<?=$posts[$i]->getImage()?>');">
-                        <img src="<?=$posts[$i]->getImage()?>" alt="Visit Pinkosensitivism Hashtag on Instagram">
-                    </article>
-                </a>
-            </li>
-            <?php else : ?>
-            <li>
-                <a href="https://www.instagram.com/explore/tags/pinkosensitivism/" target="_blank" title="Visit Pinkosensitivism Hashtag on Instagram">
-                    <article class="lazy" data-src="<?=$posts[$i]->getImage()?>"></article>
-                </a>
-            </li>
-            <?php endif; ?>
-            <?php endfor; ?>
+
+            {% for post in posts|slice(0, 9) %}
+                <li>
+                    <a href="https://www.instagram.com/explore/tags/pinkosensitivism/" target="_blank" title="Visit Pinkosensitivism Hashtag on Instagram">
+                        <article style="background-image: url('{{ 'uploads/posts/'~post.thumbnail.filename }}');">
+                            <img src="{{ 'uploads/posts/'~post.thumbnail.filename }}" alt="Visit Pinkosensitivism Hashtag on Instagram">
+                        </article>
+                    </a>
+                </li>
+            {% endfor %}
+            {% for post in posts|slice(9, posts|length) %}
+                <li>
+                    <a href="https://www.instagram.com/explore/tags/pinkosensitivism/" target="_blank" title="Visit Pinkosensitivism Hashtag on Instagram">
+                        <article class="lazy" data-src="{{ 'uploads/posts/'~post.thumbnail.filename }}"></article>
+                    </a>
+                </li>
+            {% endfor %}
         </ul>
 
     </div>

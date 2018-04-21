@@ -3,17 +3,32 @@
 namespace App\Controller;
 
 
+use App\Repository\InstaPostRepository;
 use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends BaseController
 {
 
     /**
+     * @var InstaPostRepository
+     */
+    private $instaPostRepository;
+
+    public function __construct(InstaPostRepository $instaPostRepository)
+    {
+        $this->instaPostRepository = $instaPostRepository;
+    }
+
+    /**
      * @return Response
      */
     public function index()
     {
-        return $this->render('home.html.twig');
+        $posts = $this->instaPostRepository->findAllPostsSortByDate();
+
+        return $this->render('home.html.twig', [
+            'posts' => $posts
+        ]);
     }
 
     /**

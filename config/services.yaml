@@ -3,6 +3,10 @@
 imports:
     - { resource: 'parameters.yml' }
 
+parameters:
+    temporary_directory: '%kernel.project_dir%/var/temp'
+    posts_directory: '%kernel.project_dir%/public/uploads/posts'
+
 services:
     # default configuration for services in *this* file
     _defaults:
