@@ -87,6 +87,7 @@ class PostUploadService
         try {
             $file = new File($temporaryFilePath);
             $file = $file->move($this->postDirectory, $uploadedFileName);
+            $this->fileSystem->remove($temporaryDirectoryPath);
         } catch (\Exception $e) {
             $this->fileSystem->remove($temporaryDirectoryPath);
             $this->logger->error($e->getMessage());

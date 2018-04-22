@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Repository\InstaPostRepository;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 class DefaultController extends BaseController
 {
@@ -24,7 +25,11 @@ class DefaultController extends BaseController
      */
     public function index()
     {
-        $posts = $this->instaPostRepository->findAllPostsSortByDate();
+        try {
+            $posts = $this->instaPostRepository->findAllPostsSortByDate();
+        } catch (ResourceNotFoundException $e) {
+            $posts = [];
+        }
 
         return $this->render('home.html.twig', [
             'posts' => $posts

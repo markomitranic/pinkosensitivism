@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\InstaPostRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class InstaPost implements JsonSerializable
 {
@@ -49,6 +50,11 @@ class InstaPost implements JsonSerializable
      * @var File
      */
     private $thumbnail;
+
+    /**
+     * @var string
+     */
+    private $thumbnailUrl;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -135,6 +141,22 @@ class InstaPost implements JsonSerializable
     public function setThumbnail(File $thumbnail): void
     {
         $this->thumbnail = $thumbnail;
+    }
+
+    /**
+     * @return string
+     */
+    public function getThumbnailUrl(): string
+    {
+        return $this->thumbnailUrl;
+    }
+
+    /**
+     * @param string $thumbnailUrl
+     */
+    public function setThumbnailUrl(string $thumbnailUrl): void
+    {
+        $this->thumbnailUrl = $thumbnailUrl;
     }
 
     public function getLikeCount(): ?int

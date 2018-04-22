@@ -6,6 +6,7 @@ use App\Entity\InstaPost;
 use App\PostUploadService;
 use DateTime;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\HttpFoundation\File\File;
 
 class InstaPostTransformer
 {
@@ -49,7 +50,7 @@ class InstaPostTransformer
             $instaPost->setInstagramId($post['id']);
             $instaPost->setType($post['type']);
             $instaPost->setLink($post['link']);
-            $instaPost->setThumbnail($this->handleUpload($post['images']['standard_resolution']['url']));
+            $instaPost->setThumbnailUrl($post['images']['standard_resolution']['url']);
             $instaPost->setLikeCount($post['likes']['count']);
             $instaPost->setCommentCount($post['comments']['count']);
             $instaPost->setDateTime((new DateTime())->setTimestamp($post['created_time']));
@@ -59,15 +60,5 @@ class InstaPostTransformer
         }
 
         return $instaPost;
-    }
-
-    /**
-     * @param string $url
-     * @return mixed
-     * @throws \Exception
-     */
-    public function handleUpload(string $url)
-    {
-        return $this->postUploadService->uploadPost($url);
     }
 }

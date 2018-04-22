@@ -22,6 +22,7 @@ class InstaPostRepository extends ServiceEntityRepository
 
     /**
      * @return InstaPost[]
+     * @throws ResourceNotFoundException
      */
     public function findAllPostsSortByDate()
     {
