@@ -1,12 +1,9 @@
 <?php
 namespace App\Command;
 
-use App\Entity\InstaPost;
 use App\InstagramApiService;
 use App\InstagramService;
 use App\PostUploadService;
-use Doctrine\ORM\ORMException;
-use InstagramAPI\Instagram;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

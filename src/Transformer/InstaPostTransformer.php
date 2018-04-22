@@ -6,7 +6,6 @@ use App\Entity\InstaPost;
 use App\PostUploadService;
 use DateTime;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\HttpFoundation\File\File;
 
 class InstaPostTransformer
 {
