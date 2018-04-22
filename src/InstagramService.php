@@ -79,7 +79,7 @@ class InstagramService
         $persistedFile = $this->postUploadService->uploadPost(
             $post->getThumbnailUrl()
         );
-        $post->setThumbnail($persistedFile);
+        $post->setThumbnail('uploads/posts/'.$persistedFile->getFilename());
 
         $this->entityManager->persist($post);
         $this->entityManager->flush();

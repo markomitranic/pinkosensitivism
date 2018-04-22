@@ -47,7 +47,7 @@ class InstaPost implements JsonSerializable
 
     /**
      * @ORM\Column(type="string", length=1200)
-     * @var File
+     * @var string
      */
     private $thumbnail;
 
@@ -128,17 +128,17 @@ class InstaPost implements JsonSerializable
     }
 
     /**
-     * @return File
+     * @return string
      */
-    public function getThumbnail(): File
+    public function getThumbnail(): string
     {
-        return new File($this->thumbnail);
+        return $this->thumbnail;
     }
 
     /**
-     * @param File $thumbnail
+     * @param string $thumbnail
      */
-    public function setThumbnail(File $thumbnail): void
+    public function setThumbnail(string $thumbnail): void
     {
         $this->thumbnail = $thumbnail;
     }

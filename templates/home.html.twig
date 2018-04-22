@@ -48,8 +48,8 @@
             {% for post in posts|slice(0, 9) %}
                 <li>
                     <a href="https://www.instagram.com/explore/tags/pinkosensitivism/" target="_blank" title="Visit Pinkosensitivism Hashtag on Instagram">
-                        <article style="background-image: url('{{ 'uploads/posts/'~post.thumbnail.filename }}');">
-                            <img src="{{ 'uploads/posts/'~post.thumbnail.filename }}" alt="Visit Pinkosensitivism Hashtag on Instagram">
+                        <article style="background-image: url('{{ post.thumbnail }}');">
+                            <img src="{{ post.thumbnail }}" alt="Visit Pinkosensitivism Hashtag on Instagram">
                         </article>
                     </a>
                 </li>
@@ -57,7 +57,7 @@
             {% for post in posts|slice(9, posts|length) %}
                 <li>
                     <a href="https://www.instagram.com/explore/tags/pinkosensitivism/" target="_blank" title="Visit Pinkosensitivism Hashtag on Instagram">
-                        <article class="lazy" data-src="{{ 'uploads/posts/'~post.thumbnail.filename }}"></article>
+                        <article class="lazy" data-src="{{ post.thumbnail }}"></article>
                     </a>
                 </li>
             {% endfor %}
