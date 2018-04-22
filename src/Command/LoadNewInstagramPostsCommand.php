@@ -61,7 +61,12 @@ class LoadNewInstagramPostsCommand extends ContainerAwareCommand
         }
 
         foreach ($posts as $post) {
-            $persisted = $this->instagramService->persistPost($post);
+            try {
+                $persisted = $this->instagramService->persistPost($post);
+            } catch (\Exception $e) {
+                $output->writeln('Unable to persist post: ' . $e->getMessage());
+                continue;
+            }
 
             if ($persisted) {
                 $output->writeln('Persisted post: '.$post->getInstagramId());
