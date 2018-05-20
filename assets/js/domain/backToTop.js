@@ -1,33 +1,39 @@
 jQuery(document).ready(function() {
     (function($){
 
-        var $backButton = $(".back-to-top");
-        var $html = $("html,body");
-        var $window = $(window);
+        const $backButton = document.getElementById('back-to-top'),
+            $html = $("html,body"),
+            $window = $(window);
 
-        if ($backButton.length) {
-            var scrollTrigger = 100,
-                backToTop = function () {
-                    var scrollTop = $window.scrollTop();
+        let scrollBackTrigger = 100;
 
-                    if (scrollTop > scrollTrigger) {
-                        $backButton.addClass('show');
-                    } else {
-                        $backButton.removeClass('show');
-                    }
-                };
-
-            $window.on('scroll', function () {
-                backToTop();
-            });
-            backToTop();
-
+        function backToTop() {
+            $html.animate({ scrollTop: 0 }, 700);
         }
 
-        $backButton.on('click', function (e) {
-            e.preventDefault();
-            $html.animate({ scrollTop: 0 }, 700);
-        });
+        function scrollDownToContent() {
+            $html.animate({ scrollTop: window.innerHeight - 20 }, 700);
+        }
 
+        function watchButton() {
+            const scrollTop = $window.scrollTop();
+
+            if (scrollTop > scrollBackTrigger) {
+                // treba da ide back
+                $backButton.removeEventListener('click', scrollDownToContent);
+                $backButton.addEventListener('click', backToTop);
+                $backButton.classList.remove('down');
+            } else {
+                // ne treba da ide back
+                $backButton.addEventListener('click', scrollDownToContent);
+                $backButton.removeEventListener('click', backToTop);
+                $backButton.classList.add('down');
+            }
+
+            //    $backButton.addEventListener('click', backToTop);
+        }
+
+        window.addEventListener('scroll', watchButton);
+        watchButton();
     })(jQuery);
 });

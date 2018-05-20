@@ -2,16 +2,21 @@ body {
 	background-color: $pink;
 }
 
-.back-to-top {
-	opacity: 0;
+#back-to-top {
+	width: 40px;
+	height: 40px;
 	position: fixed;
 	bottom: 10px;
 	left: 50%;
 	transform: translateX(-50%);
-	transition: 0.2s bottom ease-out, 0.2s opacity ease-out;
+	transition: 0.2s bottom ease-out, 0.2s opacity ease-out, 0.5s transform ease-out;
 
-	&.show {
-		opacity: 1;
+	&.down {
+		transform: translateX(-50%) rotate(180deg);
+
+		&:hover {
+			transform: translateX(-50%) rotate(180deg);
+		}
 	}
 	&:hover {
 		cursor: pointer;
