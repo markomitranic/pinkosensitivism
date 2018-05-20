@@ -96,14 +96,12 @@ jQuery(document).ready(function() {
         }
 
         function init() {
+            if (window.innerWidth <= 768 || $svg.style.display === 'none') {
+                return;
+            }
+
             resetCanvasSize();
             resetDropletPath();
-
-            if (window.innerWidth < 600) {
-                $path.setAttribute('d', 'M0,0 V568 Q280,99.99977245280265 320,0 Z');
-                $circle.setAttribute('cx', 280);
-                $circle.setAttribute('cy', 430);
-            }
 
             $circle.setAttribute('r', circleRadius);
             $svg.style.display = 'block';

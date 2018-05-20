@@ -7,6 +7,12 @@
   transform: translateZ(0);
   display: none;
 
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+
+
   #mirror {
     fill: #fbd1d6;
     will-change: transform;
