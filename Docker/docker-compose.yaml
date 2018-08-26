@@ -61,6 +61,20 @@ services:
     networks:
       - pinko
 
+  node:
+    container_name: pinko_node
+    build:
+      context: ./node
+      dockerfile: Dockerfile
+      target: ${ENV}
+    user: "node"
+    volumes:
+      - ./../src:/home/node/app
+    working_dir: /home/node/app
+    entrypoint: /home/node/entrypoint.sh
+    environment:
+      - NODE_ENV=${ENV}
+
 networks:
   pinko:
     driver: bridge
