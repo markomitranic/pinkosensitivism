@@ -6,6 +6,9 @@ WORKDIR /home/node/app/
 RUN npm install -g yarn \
     && npm install yarn
 
+RUN chmod a+rwx  /usr/local/lib/node_modules/yarn/bin/yarn* \
+    && chmod a+rwx  /usr/local/bin/yarn*
+
 RUN yarn install
 
 FROM base AS prod
