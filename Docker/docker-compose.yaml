@@ -53,7 +53,7 @@ services:
     build:
       context: ./composer
       dockerfile: Dockerfile
-      target: prod
+      target: ${ENV}
     volumes:
       - ./../src/:/usr/share/nginx/pinko
     user: root

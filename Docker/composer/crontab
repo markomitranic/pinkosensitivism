@@ -1,0 +1,1 @@
+0,15,30,45 * * * * php /usr/share/nginx/pinko/bin/console app:instagram:sync

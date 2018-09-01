@@ -13,6 +13,12 @@ RUN docker-php-ext-install zip
 
 WORKDIR /usr/share/nginx/
 
-FROM base AS prod
 COPY entrypoint.sh /usr/share/nginx/entrypoint.sh
 RUN ["chmod", "+x", "/usr/share/nginx/entrypoint.sh"]
+
+FROM base AS dev
+
+FROM base AS prod
+COPY crontab /etc/cron.d/pinko-cron
+RUN chmod 0644 /etc/cron.d/pinko-cron
+RUN crontab /etc/cron.d/pinko-cron
