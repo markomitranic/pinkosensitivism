@@ -3,6 +3,7 @@ FROM php:7.2.8-fpm AS base
 RUN apt-get update
 RUN apt-get install wget -y
 RUN apt-get install cron -y
+RUN apt-get install nano -y
 RUN docker-php-ext-install pdo_mysql
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
