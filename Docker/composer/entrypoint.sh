@@ -2,7 +2,7 @@
 set -e
 
 # Start composer
-cd /usr/share/nginx/rush-b/
+cd /usr/share/nginx/pinko/
 COMPOSER_ALLOW_SUPERUSER=1 composer install
 
 # Install a new cron
