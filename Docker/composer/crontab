@@ -1,1 +1,1 @@
-0,15,30,45 * * * * php /usr/share/nginx/pinko/bin/console app:instagram:sync
+0 */12 * * * php /usr/share/nginx/pinko/bin/console app:instagram:sync
