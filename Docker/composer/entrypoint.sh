@@ -12,4 +12,5 @@ crontab mycron
 rm mycron
 
 # Tail is used to keep the container running in development environment.
+echo "[Operation] Composer deployment finished. The container will stay up in dev environment."
 tail -f /dev/null
