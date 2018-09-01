@@ -67,7 +67,6 @@ services:
       context: ./node
       dockerfile: Dockerfile
       target: ${ENV}
-    user: "node"
     volumes:
       - ./../src:/home/node/app
     working_dir: /home/node/app
