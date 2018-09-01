@@ -57,7 +57,11 @@ services:
     volumes:
       - ./../src/:/usr/share/nginx/pinko
     user: root
-#    entrypoint: /usr/share/nginx/entrypoint.sh
+    entrypoint: /usr/share/nginx/entrypoint.sh
+    depends_on:
+      - php
+      - nginx
+      - mysql
     networks:
       - pinko
 
@@ -71,6 +75,11 @@ services:
       - ./../src:/home/node/app
     working_dir: /home/node/app
     entrypoint: /home/node/entrypoint.sh
+    depends_on:
+      - php
+      - nginx
+      - mysql
+      - composer
     environment:
       - NODE_ENV=${ENV}
 
