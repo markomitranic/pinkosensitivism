@@ -81,6 +81,8 @@ services:
       - composer
     environment:
       - NODE_ENV=${ENV}
+    networks:
+      - pinko
 
 networks:
   pinko:
