@@ -12,6 +12,8 @@ FROM base AS prod
 COPY conf/php-fpm.conf /usr/local/etc/php-fpm.d/zzz-pinko-fpm.conf
 COPY conf/php.ini /usr/local/etc/php/conf.d/pinko-php.ini
 ADD sync-cron /etc/cron.d/sync-cron
+RUN ["chmod", "644", "/etc/cron.d/sync-cron"]
+RUN ["chown", "root:root", "/etc/cron.d/sync-cron"]
 
 FROM base AS dev
 
