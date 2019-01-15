@@ -21,4 +21,6 @@ FROM base AS dev
 FROM base AS prod
 COPY crontab /etc/cron.d/pinko-cron
 RUN chmod 0644 /etc/cron.d/pinko-cron
+RUN chown root:root /etc/cron.d/pinko-cron
+RUN service cron start
 RUN crontab /etc/cron.d/pinko-cron

@@ -1,1 +1,0 @@
-* */12 * * * root /usr/share/nginx/pinko/bin/console app:instagram:sync > /usr/share/nginx/pinko/var/log/sync.log
