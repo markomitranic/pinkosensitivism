@@ -1,12 +1,9 @@
 # Docker
 /.env
 
-# SSL Certificates
-/nginx/ssl/certs/*
-/nginx/ssl/.srl
-!/nginx/ssl/certs/.gitkeep
-/php/ssl
+# Certificates generated and symlinked from host
+nginx/ssl
 
-# Databases Store
-/mysql/datastore/*
-!/mysql/datastore/.gitkeep
+# Databases persisted on host
+mysql/datastore
+
