@@ -14,6 +14,7 @@ COPY conf/php.ini /usr/local/etc/php/conf.d/pinko-php.ini
 ADD sync-cron /etc/cron.d/sync-cron
 RUN ["chmod", "644", "/etc/cron.d/sync-cron"]
 RUN ["chown", "root:root", "/etc/cron.d/sync-cron"]
+RUN service cron start
 
 FROM base AS dev
 
