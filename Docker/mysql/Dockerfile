@@ -1,4 +1,7 @@
 FROM mariadb:latest AS base
 
-FROM base AS prod
 COPY my.cnf /etc/my.cnf
+
+FROM base AS prod
+
+FROM base AS dev
