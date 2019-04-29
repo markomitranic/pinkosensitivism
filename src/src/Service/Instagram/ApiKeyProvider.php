@@ -4,6 +4,7 @@ namespace App\Service\Instagram;
 
 use App\Service\Instagram\ApiKeyAdapter\ApiAdapter;
 use App\Service\Instagram\ApiKeyAdapter\CacheAdapter;
+use Exception;
 use Psr\Cache\InvalidArgumentException;
 use Psr\Log\LoggerInterface;
 
@@ -41,10 +42,9 @@ class ApiKeyProvider
     }
 
     /**
-     * @return string
-     * @throws \Exception
+     * @throws Exception
      */
-    public function getKey()
+    public function getKey(): string
     {
         $cachedKey = null;
 
