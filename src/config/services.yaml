@@ -32,6 +32,18 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
+    App\Controller\API\InstagramController:
+        bind:
+            $instagramClientId: '%instagram.clientId%'
+            $instagramRedirectUri: '%instagram.redirectUri%'
+
     App\Service\Instagram\ApiKeyAdapter\CacheAdapter:
         arguments:
             $cacheRootDir: '%kernel.cache_dir%'
+
+    App\Service\Instagram\ApiKeyAdapter\ApiAdapter:
+        arguments:
+             $clientId: '%instagram.clientId%'
+             $clientSecret: '%instagram.clientSecret%'
+             $redirectUri: '%instagram.redirectUri%'
+

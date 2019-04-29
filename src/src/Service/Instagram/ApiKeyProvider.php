@@ -17,27 +17,19 @@ class ApiKeyProvider
     private $cacheAdapter;
 
     /**
-     * @var ApiAdapter
-     */
-    private $apiAdapter;
-
-    /**
      * @var LoggerInterface
      */
     private $logger;
 
     /**
      * @param CacheAdapter $cacheAdapter
-     * @param ApiAdapter $apiAdapter
      * @param LoggerInterface $logger
      */
     public function __construct(
         CacheAdapter $cacheAdapter,
-        ApiAdapter $apiAdapter,
         LoggerInterface $logger
     ) {
         $this->cacheAdapter = $cacheAdapter;
-        $this->apiAdapter = $apiAdapter;
         $this->logger = $logger;
     }
 
@@ -52,11 +44,11 @@ class ApiKeyProvider
             $cachedKey = $this->cacheAdapter->getItem('key');
         } catch (InvalidArgumentException $e) {
             $this->logger->error('Unable to get key from cache.', ['exception' => $e]);
+            throw new Exception('Unable to get key from cache. ' . $e->getMessage());
         }
 
         if (!$cachedKey->isHit() || is_null($cachedKey->get())) {
-            $cachedKey->set($this->apiAdapter->getKey());
-            $this->cacheAdapter->save($cachedKey);
+            throw new Exception('We have no Authorization Token to use as an API key. Please refresh the token.');
         }
 
         return $cachedKey->get();

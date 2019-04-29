@@ -12,7 +12,7 @@ final class CacheAdapter extends FilesystemAdapter implements AdapterInterface
     /** @var string */
     const NAME_SPACE = 'apikey';
     /** @var int */
-    const LIFETIME = 2629800; // 1 month
+    const LIFETIME = 31557600; // 1 year
 
     /**
      * @param string $cacheRootDir
