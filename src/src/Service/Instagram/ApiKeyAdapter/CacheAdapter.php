@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Service\Instagram\Cache;
+namespace App\Service\Instagram\ApiKeyAdapter;
 
 use Symfony\Component\Cache\Adapter\AdapterInterface;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
 
-final class ApiKeyCacheAdapter extends FilesystemAdapter implements AdapterInterface
+final class CacheAdapter extends FilesystemAdapter implements AdapterInterface
 {
 
     /** @var string */

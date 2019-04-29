@@ -2,7 +2,8 @@
 
 namespace App\Service\Instagram;
 
-use App\Service\Instagram\Cache\ApiKeyCacheAdapter;
+use App\Service\Instagram\ApiKeyAdapter\ApiAdapter;
+use App\Service\Instagram\ApiKeyAdapter\CacheAdapter;
 use Psr\Cache\InvalidArgumentException;
 use Psr\Log\LoggerInterface;
 
@@ -10,20 +11,32 @@ class ApiKeyProvider
 {
 
     /**
-     * @var ApiKeyCacheAdapter
+     * @var CacheAdapter
      */
     private $cacheAdapter;
+
+    /**
+     * @var ApiAdapter
+     */
+    private $apiAdapter;
 
     /**
      * @var LoggerInterface
      */
     private $logger;
 
+    /**
+     * @param CacheAdapter $cacheAdapter
+     * @param ApiAdapter $apiAdapter
+     * @param LoggerInterface $logger
+     */
     public function __construct(
-        ApiKeyCacheAdapter $cacheAdapter,
+        CacheAdapter $cacheAdapter,
+        ApiAdapter $apiAdapter,
         LoggerInterface $logger
     ) {
         $this->cacheAdapter = $cacheAdapter;
+        $this->apiAdapter = $apiAdapter;
         $this->logger = $logger;
     }
 
@@ -41,29 +54,12 @@ class ApiKeyProvider
             $this->logger->error('Unable to get key from cache.', ['exception' => $e]);
         }
 
-        if ($cachedKey->isHit() && !is_null($cachedKey->get())) {
-            return $cachedKey->get();
+        if (!$cachedKey->isHit() || is_null($cachedKey->get())) {
+            $cachedKey->set($this->apiAdapter->getKey());
+            $this->cacheAdapter->save($cachedKey);
         }
 
-        try {
-            $apiKey = $this->requestNewKey();
-        } catch (\Exception $e) {
-            $this->logger->error('Unable to get new Instagram Api key.', ['exception' => $e]);
-            throw new \Exception('Unable to get new Instagram Api key.');
-        }
-
-        $cachedKey->set($apiKey);
-        $this->cacheAdapter->save($cachedKey);
-
-        return $apiKey;
+        return $cachedKey->get();
     }
 
-    /**
-     * @return string
-     * @throws \Exception
-     */
-    private function requestNewKey()
-    {
-        return '2966022865.bc6804b.eeb29a27d8c14cc0b9dcfb8570c4366b';
-    }
 }
