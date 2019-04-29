@@ -29,12 +29,15 @@ COPY conf/php.ini /usr/local/etc/php/conf.d/pinko-php.ini
 
 WORKDIR /usr/share/nginx/
 
-COPY entrypoint.sh /usr/share/nginx/entrypoint.sh
-RUN ["chmod", "+x", "/usr/share/nginx/entrypoint.sh"]
-
 FROM base AS prod
 
+COPY entrypoint_prod.sh /usr/share/nginx/entrypoint.sh
+RUN ["chmod", "+x", "/usr/share/nginx/entrypoint.sh"]
+
 FROM base AS dev
+
+COPY entrypoint_dev.sh /usr/share/nginx/entrypoint.sh
+RUN ["chmod", "+x", "/usr/share/nginx/entrypoint.sh"]
 
 ENV PHP_IDE_CONFIG serverName=pinkosensitivism.com
 RUN yes | pecl install xdebug-2.7.0beta1
