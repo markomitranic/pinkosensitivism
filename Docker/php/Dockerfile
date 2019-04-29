@@ -30,7 +30,7 @@ FROM base AS prod
 
 FROM base AS dev
 
-ENV PHP_IDE_CONFIG serverName=pinkosensitivism.local
+ENV PHP_IDE_CONFIG serverName=pinkosensitivism.com
 RUN yes | pecl install xdebug-2.7.0beta1
 RUN echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini \
