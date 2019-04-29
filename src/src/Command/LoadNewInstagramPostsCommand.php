@@ -4,14 +4,24 @@ namespace App\Command;
 use App\InstagramApiService;
 use App\InstagramService;
 use App\PostUploadService;
+use App\Service\Instagram\ApiKeyProvider;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
-class LoadNewInstagramPostsCommand extends ContainerAwareCommand
+class LoadNewInstagramPostsCommand extends Command
 {
 
-    const URL = 'https://homullus.com/bfpe/logo.png';
+    /** @var string  */
+    const NAME = 'app:instagram:sync';
+
+    /**
+     * @var string
+     */
+    protected static $defaultName = self::NAME;
 
     /**
      * @var PostUploadService
@@ -28,16 +38,35 @@ class LoadNewInstagramPostsCommand extends ContainerAwareCommand
      */
     private $api;
 
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    /**
+     * @var SymfonyStyle
+     */
+    private $io;
+
+    /**
+     * @param PostUploadService $postUploadService
+     * @param InstagramService $instagramService
+     * @param InstagramApiService $api
+     * @param LoggerInterface $logger
+     */
     public function __construct(
         PostUploadService $postUploadService,
         InstagramService $instagramService,
         InstagramApiService $api,
-        ?string $name = null)
-    {
-        parent::__construct($name);
+        LoggerInterface $logger,
+        ApiKeyProvider $test
+    ) {
+        parent::__construct(self::NAME);
         $this->postUploadService = $postUploadService;
         $this->instagramService = $instagramService;
         $this->api = $api;
+        $this->logger = $logger;
+        $this->test = $test;
     }
 
     protected function configure()
@@ -48,34 +77,45 @@ class LoadNewInstagramPostsCommand extends ContainerAwareCommand
         ;
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int
+     */
     protected function execute(
         InputInterface $input,
         OutputInterface $output
     ) {
-        $output->writeln('Pulling latest data from Instagram API.');
+        $this->io = new SymfonyStyle($input, $output);
+
+        $this->io->title('Pulling latest data from Instagram API.');
+        
         try {
             $posts = $this->api->getPostsStartingWith();
         } catch (\Exception $e) {
-            $output->writeln('Unable to contact Instagram API.');
-            return;
+            $this->io->error('Unable to contact Instagram API.');
+            $this->logger->error('Unable to contact Instagram API.', ['exception' => $e]);
+            return 1;
         }
 
         foreach ($posts as $post) {
             try {
                 $persisted = $this->instagramService->persistPost($post);
             } catch (\Exception $e) {
-                $output->writeln('Unable to persist post: ' . $e->getMessage());
+                $this->io->error('Unable to persist post: ' . $e->getMessage());
+                $this->logger->error('Unable to persist post.', ['exception' => $e]);
                 continue;
             }
 
             if ($persisted) {
-                $output->writeln('Persisted post: '.$post->getInstagramId());
+                $this->io->writeln('Persisted post: '.$post->getInstagramId());
             } else {
-                $output->writeln('Post '.$post->getInstagramId() . ' already exists. Skipping persist.');
+                $this->io->writeln('Post '.$post->getInstagramId() . ' already exists. Skipping persist.');
             }
         }
 
-        $output->writeln('Persisted posts.');
-        return;
+        $this->io->success('Persisted posts.');
+        return 0;
     }
+
 }
