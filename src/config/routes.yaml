@@ -14,3 +14,14 @@ instagram_list:
     path: /api/instagram/list
     controller: App\Controller\API\InstagramController::list
     methods: GET
+
+instagram_authToken:
+    path: /api/instagram/auth/token/
+    controller: App\Controller\API\InstagramController::authToken
+    methods: GET
+
+instagram_authCode:
+    path: /api/instagram/auth/{password}
+    controller: App\Controller\API\InstagramController::authCode
+    methods: GET
+

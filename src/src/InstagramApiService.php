@@ -4,6 +4,7 @@ namespace App;
 
 
 use App\Entity\InstaPost;
+use App\Service\Instagram\ApiKeyProvider;
 use App\Transformer\InstaPostTransformer;
 use Exception;
 use GuzzleHttp\Client;
@@ -43,15 +44,23 @@ class InstagramApiService
      */
     private $apiKey;
 
+    /**
+     * @param ApiKeyProvider $apiKeyProvider
+     * @param InstaPostTransformer $instaPostTransformer
+     * @param LoggerInterface $logger
+     * @param ContainerInterface $container
+     * @throws Exception
+     */
     public function __construct(
-        LoggerInterface $logger,
+        ApiKeyProvider $apiKeyProvider,
         InstaPostTransformer $instaPostTransformer,
+        LoggerInterface $logger,
         ContainerInterface $container
     ) {
         $this->logger = $logger;
         $this->instaPostTransformer = $instaPostTransformer;
         $this->container = $container;
-        $this->apiKey = $this->container->getParameter('instagram.apikey');
+        $this->apiKey = $apiKeyProvider->getKey();
         $this->api = new Client([
             'base_uri' => self::API_ENDPOINT,
         ]);

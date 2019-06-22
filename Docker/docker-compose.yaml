@@ -7,13 +7,13 @@ services:
     build:
       context: ./nginx
       dockerfile: Dockerfile
-      target: prod
+      target: ${ENV}
     restart: always
-    command: [nginx-debug, '-g', 'daemon off;']
     volumes:
       - ./../src/:/usr/share/nginx/pinko:delegated
     ports:
       - ${HTTPS_PORT}:443
+      - ${HTTP_PORT}:80
     depends_on:
       - php
     networks:
@@ -24,7 +24,7 @@ services:
     build:
       context: ./php
       dockerfile: Dockerfile
-      target: prod
+      target: ${ENV}
     restart: always
     volumes:
       - ./../src/:/usr/share/nginx/pinko:delegated
@@ -36,7 +36,7 @@ services:
     build:
       context: ./mysql
       dockerfile: Dockerfile
-      target: prod
+      target: ${ENV}
     restart: always
     volumes:
       - ./mysql/datastore:/var/lib/mysql:cached
@@ -54,7 +54,7 @@ services:
       dockerfile: Dockerfile
       target: ${ENV}
     volumes:
-      - ./../src/:/usr/share/nginx/pinko
+      - ./../src/:/usr/share/nginx/pinko:delegated
     user: root
     entrypoint: /usr/share/nginx/entrypoint.sh
     depends_on:
@@ -71,7 +71,7 @@ services:
       dockerfile: Dockerfile
       target: ${ENV}
     volumes:
-      - ./../src:/home/node/app
+      - ./../src:/home/node/app:cached
     working_dir: /home/node/app
     entrypoint: /home/node/entrypoint.sh
     depends_on:

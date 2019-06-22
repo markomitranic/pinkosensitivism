@@ -1,4 +1,4 @@
-FROM node:8.11.3-alpine AS base
+FROM node:8-jessie AS base
 ENV NPM_CONFIG_LOGLEVEL info
 
 WORKDIR /home/node/app/
