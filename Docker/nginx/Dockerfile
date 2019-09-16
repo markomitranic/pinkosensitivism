@@ -1,13 +1,11 @@
-FROM nginx:latest AS base
+FROM nginx:latest
 
-RUN apt-get update
-RUN apt-get install nano
+COPY ./Docker/nginx/ssl /etc/nginx/ssl
 
 RUN rm /etc/nginx/conf.d/*
-COPY conf /etc/nginx/conf.d
-COPY ssl /etc/nginx/ssl
-WORKDIR /usr/share/nginx/html
+COPY ./Docker/nginx/conf/gzip.conf /etc/nginx/conf.d/gzip.conf
+COPY ./Docker/nginx/conf/nginx.conf /etc/nginx/conf.d/nginx.conf
+COPY ./Docker/nginx/conf/tls.conf /etc/nginx/conf.d/tls.conf
+COPY ./Docker/nginx/conf/pinko.conf /etc/nginx/conf.d/pinko.conf
 
-FROM base AS prod
-
-FROM base AS dev
+COPY ./src /app/src

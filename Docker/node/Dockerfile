@@ -1,20 +1,13 @@
-FROM node:8-jessie AS base
+FROM node:10.16-jessie-slim AS prod
 ENV NPM_CONFIG_LOGLEVEL info
-
-WORKDIR /home/node/app/
-
-RUN npm install -g yarn \
-    && npm install yarn
-
-RUN chmod a+rwx  /usr/local/lib/node_modules/yarn/bin/yarn* \
-    && chmod a+rwx  /usr/local/bin/yarn*
-
+USER root
+RUN npm install -g yarn
+COPY ./src /app/src
+WORKDIR /app/src
 RUN yarn install
+COPY ./Docker/node/entrypoint.sh /app/entrypoint.sh
+RUN ["chmod", "+x", "/app/entrypoint.sh"]
 
-FROM base AS prod
-COPY entrypoint-prod.sh /home/node/entrypoint.sh
-RUN ["chmod", "+x", "/home/node/entrypoint.sh"]
-
-FROM base AS dev
-COPY entrypoint-dev.sh /home/node/entrypoint.sh
-RUN ["chmod", "+x", "/home/node/entrypoint.sh"]
+FROM prod AS dev
+COPY ./Docker/node/entrypoint-dev.sh /app/entrypoint.sh
+RUN ["chmod", "+x", "/app/entrypoint.sh"]

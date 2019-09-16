@@ -3,4 +3,4 @@
 set -e
 
 yarn install
-yarn encore dev --watch
+yarn watch
