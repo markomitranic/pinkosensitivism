@@ -26,6 +26,8 @@ services:
     restart: always
     entrypoint: /app/entrypoint.sh
     environment:
+      APP_ENV: ${ENV}
+      APP_DEBUG: ${SYMFONY_APP_DEBUG}
       DATABASE_URL: mysql://root:${MYSQL_PASS}@pinko_mysql:3306/pinko
       INSTAGRAM_CLIENT_ID: ${INSTAGRAM_CLIENT_ID}
       INSTAGRAM_CLIENT_SECRET: ${INSTAGRAM_CLIENT_SECRET}

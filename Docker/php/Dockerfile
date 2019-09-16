@@ -17,6 +17,10 @@ COPY ./Docker/php/conf/php.ini /usr/local/etc/php/conf.d/app-php.ini
 ADD ./src /app/src
 COPY --from=build /app/src/vendor/ /app/src/vendor/
 RUN mkdir -p /app/src/var/cache
+RUN apt-get -y install cron
+COPY ./Docker/php/ingest-cron /etc/cron.d/ingest-cron
+RUN chmod 0644 /etc/cron.d/ingest-cron
+RUN touch /var/log/cron.log
 COPY ./Docker/php/entrypoint.sh /app/entrypoint.sh
 RUN ["chmod", "+x", "/app/entrypoint.sh"]
 
