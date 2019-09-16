@@ -2,14 +2,12 @@
 
 namespace App;
 
-
 use App\Entity\InstaPost;
 use App\Service\Instagram\ApiKeyProvider;
 use App\Transformer\InstaPostTransformer;
 use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
-use Monolog\Logger;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\Container;

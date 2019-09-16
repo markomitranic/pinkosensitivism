@@ -1,9 +1,0 @@
-parameters:
-    locale: 'en'
-    database.host: 'localhost'
-    database.name: 'pinko'
-    database.user: 'root'
-    database.pass: ''
-    instagram.username: 'instaccount'
-    instagram.password: 'instaccount'
-    instagram.redirectUri: 'https://example.com/'

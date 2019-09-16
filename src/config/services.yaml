@@ -1,8 +1,5 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
-imports:
-    - { resource: 'parameters.yml' }
-
 parameters:
     temporary_directory: '%kernel.project_dir%/var/temp'
     posts_directory: '%kernel.project_dir%/public/uploads/posts'
@@ -43,7 +40,7 @@ services:
 
     App\Service\Instagram\ApiKeyAdapter\ApiAdapter:
         arguments:
-             $clientId: '%instagram.clientId%'
-             $clientSecret: '%instagram.clientSecret%'
-             $redirectUri: '%instagram.redirectUri%'
+             $clientId: '%env(INSTAGRAM_CLIENT_ID)%'
+             $clientSecret: '%env(INSTAGRAM_CLIENT_SECRET)%'
+             $redirectUri: '%env(INSTAGRAM_REDIRECT_URI)%'
 
