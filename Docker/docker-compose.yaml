@@ -30,6 +30,7 @@ services:
       INSTAGRAM_CLIENT_ID: ${INSTAGRAM_CLIENT_ID}
       INSTAGRAM_CLIENT_SECRET: ${INSTAGRAM_CLIENT_SECRET}
       INSTAGRAM_REDIRECT_URI: ${INSTAGRAM_REDIRECT_URI}
+      SILLY_PASSWORD_PROTECC: ${SILLY_PASSWORD_PROTECC}
     volumes:
       - storage:/app/src/public/uploads/posts
       - assets:/app/src/public/build

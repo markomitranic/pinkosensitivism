@@ -58,9 +58,11 @@ class InstagramController extends ApiController
     public function authCode(
         string $instagramClientId,
         string $instagramRedirectUri,
+        string $sillyPasswordProtection,
         string $password
     ): Response {
-        if (!password_verify($password, self::AUTH_PASS_HASH)) {
+        $hash = password_hash($sillyPasswordProtection, PASSWORD_DEFAULT);
+        if (!password_verify($password, $hash)) {
             $this->logger->error('Someone tried to access Instagram AuthCode EP with a wrong passwword.', ['password' => $password]);
             return new Response('Route not found.', Response::HTTP_NOT_FOUND);
         }

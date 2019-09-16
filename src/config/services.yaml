@@ -31,8 +31,9 @@ services:
 
     App\Controller\API\InstagramController:
         bind:
-            $instagramClientId: '%instagram.clientId%'
-            $instagramRedirectUri: '%instagram.redirectUri%'
+            $instagramClientId: '%env(INSTAGRAM_CLIENT_ID)%'
+            $instagramRedirectUri: '%env(INSTAGRAM_REDIRECT_URI)%'
+            $sillyPasswordProtection: '%env(SILLY_PASSWORD_PROTECC)%'
 
     App\Service\Instagram\ApiKeyAdapter\CacheAdapter:
         arguments:
