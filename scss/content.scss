@@ -1,0 +1,67 @@
+main.content {
+  margin: 130px auto 200px auto;
+  padding: 0 20px;
+  max-width: 980px;
+
+  @media screen and (max-width: 980px) {
+    padding: 0 30px;
+  }
+
+  h2 {
+    font-weight: 600;
+    letter-spacing: -1px;
+    color: $pink-dirty;
+    font-size: 26px;
+    line-height: 30px;
+    margin-bottom: 20px;
+    margin-top: 40px;
+
+    @media screen and (max-width: 640px) {
+      font-size: 22px;
+    }
+  }
+
+  p {
+    color: $white;
+    font-size: 26px;
+    line-height: 32px;
+
+    @media screen and (max-width: 640px) {
+      font-size: 18px;
+      line-height: 1.66;
+    }
+  }
+
+  blockquote {
+    position: relative;
+    font-size: 22px;
+    line-height: 28px;
+    padding-top: 90px;
+    padding-bottom: 40px;
+    margin: 0 auto;
+    max-width: 860px;
+
+    @media screen and (max-width: 980px) {
+      width: calc(100% - 100px);
+    }
+    @media screen and (max-width: 640px) {
+      width: 100%;
+      font-size: 14px;
+      line-height: 1.66;
+    }
+
+    & i.fa {
+      display: block;
+      position: absolute;
+      color: $pink-dirty;
+      z-index: -1;
+      font-size: 170px;
+      top: 0;
+      left: -30px;
+    }
+  }
+
+  strong {
+    font-weight: 800;
+  }
+}

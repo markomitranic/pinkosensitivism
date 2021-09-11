@@ -1,11 +1,6 @@
-FROM elixir:latest
-
-WORKDIR /app/src
-RUN mix local.hex --force && \
-    mix local.rebar --force
-
-# HEALTHCHECK --interval=30s \
-#     --timeout=10s \
-#     --start-period=15s \
-#     --retries=3 \
-#     CMD ["CMD", "curl", "http://127.0.0.1:80"]
+FROM node:18-slim
+COPY . /app
+WORKDIR /app
+ENV NODE_ENV=production
+RUN npm install
+CMD ["npm", "run", "start"]

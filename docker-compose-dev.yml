@@ -1,8 +1,0 @@
-version: "3.8"
-
-services:
-  pinko_app:
-    volumes:
-      - ./src:/app/src
-      - ${UPLOADS_PATH}:/app/uploads
-    command: ["tail", "-f", "/dev/null"]

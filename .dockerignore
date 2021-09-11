@@ -1,0 +1,6 @@
+node_modules
+.env
+.vscode
+cookies.json
+public/posts
+storage
