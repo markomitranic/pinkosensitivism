@@ -1,0 +1,6 @@
+_OLD
+tmp
+src/.vscode
+src/.elixir_ls
+src/_build
+src/deps

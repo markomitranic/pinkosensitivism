@@ -1,3 +1,0 @@
-# * * * * * echo "Hello world" >> /var/log/cron.log 2>&1
-0 12 * * * /usr/local/bin/php /app/src/bin/console app:instagram:sync >> /var/log/cron.log 2>&1
-# An empty line is required at the end of this file for a valid cron file.
