@@ -1,31 +1,49 @@
 {
   "name": "pinkosensitivism",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
-  "main": "./bin/www",
+  "type": "module",
   "scripts": {
-    "start": "node ./bin/www",
-    "watch": "nodemon . --ignore cookies.json",
-    "scss": "sass --watch ./scss/main.scss ./public/stylesheets/style.css",
-    "dev": "concurrently 'npm:scss' 'npm:watch'"
+    "build": "prisma generate && next build",
+    "dev": "next dev",
+    "lint": "next lint",
+    "start": "next start",
+    "play": "tsx scripts/play.ts",
+    "generate": "drizzle-kit generate:pg"
   },
   "dependencies": {
-    "compression": "^1.7.4",
-    "cookie-parser": "~1.4.4",
-    "cors": "^2.8.5",
-    "debug": "~2.6.9",
-    "dotenv": "^16.0.1",
-    "ejs": "^3.1.8",
-    "express": "~4.16.1",
-    "http-errors": "~1.6.3",
-    "instagram-private-api": "^1.45.3",
-    "morgan": "~1.9.1",
-    "sqlite": "^4.1.1",
-    "sqlite3": "^5.0.8"
+    "@prisma/client": "^5.8.0",
+    "@t3-oss/env-nextjs": "^0.7.3",
+    "@vercel/postgres": "^0.5.1",
+    "@vercel/speed-insights": "^1.0.3",
+    "dotenv": "^16.3.1",
+    "next": "^14.0.4",
+    "prisma": "^5.8.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
-    "concurrently": "^7.1.0",
-    "nodemon": "^2.0.16",
-    "sass": "^1.51.0"
-  }
+    "@types/eslint": "^8.56.2",
+    "@types/node": "^20.11.0",
+    "@types/react": "^18.2.47",
+    "@types/react-dom": "^18.2.18",
+    "@typescript-eslint/eslint-plugin": "^6.18.1",
+    "@typescript-eslint/parser": "^6.18.1",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "^14.0.4",
+    "postcss": "^8.4.33",
+    "prettier": "^3.2.2",
+    "prettier-plugin-tailwindcss": "^0.5.11",
+    "tailwindcss": "^3.4.1",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7"
+  },
+  "ct3aMetadata": {
+    "initVersion": "7.25.1"
+  },
+  "packageManager": "pnpm@8.8.0"
 }

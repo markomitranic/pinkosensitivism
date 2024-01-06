@@ -1,6 +1,0 @@
-CREATE TABLE Post (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  instagram_uuid TEXT NOT NULL,
-  url TEXT NOT NULL,
-  inserted_at TIMESTAMP DEFAULT(STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW'))
-);
