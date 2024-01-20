@@ -5,7 +5,6 @@
     "esbenp.prettier-vscode",
     "bradlc.vscode-tailwindcss",
     "mikestead.dotenv",
-    "yzhang.markdown-all-in-one",
-    "prisma.prisma"
+    "yzhang.markdown-all-in-one"
   ]
 }
