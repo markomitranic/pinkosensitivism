@@ -1,18 +1,14 @@
-import { PrismaClient } from "@prisma/client";
-import "dotenv/config";
-import { dbg } from "~/lib/utils/dbg";
-
-const prisma = new PrismaClient();
+import { logger } from "./logger";
 
 /**
  * Serves as a playground for quickly iterating on stuff.
  *
- * @example pnpm tsx ./scripts/play.ts
+ * @example pnpm run cli scripts/play.ts
  */
 async function main() {
-  dbg(await prisma.post.count());
+  await new Promise((resolve) => setTimeout(resolve, 3000));
 
-  console.log("Success!");
+  logger.success("Success!");
 }
 
 void main();
