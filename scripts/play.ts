@@ -1,3 +1,4 @@
+import "dotenv/config"; // Ensure env vars are loaded
 import { logger } from "./logger";
 
 /**

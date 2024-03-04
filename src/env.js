@@ -11,8 +11,7 @@ export const env = createEnv({
     INSTAGRAM_API_TOKEN: z.string(),
     TURSO_DATABASE: z.string(),
     TURSO_AUTH_TOKEN: z.string(),
-    UPLOADTHING_SECRET: z.string(),
-    UPLOADTHING_APP_ID: z.string(),
+    BLOB_READ_WRITE_TOKEN: z.string(),
   },
 
   /**
@@ -33,8 +32,7 @@ export const env = createEnv({
     INSTAGRAM_API_TOKEN: process.env.INSTAGRAM_API_TOKEN,
     TURSO_DATABASE: process.env.TURSO_DATABASE,
     TURSO_AUTH_TOKEN: process.env.TURSO_AUTH_TOKEN,
-    UPLOADTHING_SECRET: process.env.UPLOADTHING_SECRET,
-    UPLOADTHING_APP_ID: process.env.UPLOADTHING_APP_ID,
+    BLOB_READ_WRITE_TOKEN: process.env.BLOB_READ_WRITE_TOKEN,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**

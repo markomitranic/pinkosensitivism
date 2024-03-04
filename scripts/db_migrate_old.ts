@@ -1,4 +1,6 @@
+import { put } from "@vercel/blob";
 import "dotenv/config"; // Ensure env vars are loaded
+import { readFile } from "fs/promises";
 import { open } from "sqlite";
 import sqlite3 from "sqlite3";
 import Turso from "~/lib/turso/Turso";
@@ -20,21 +22,23 @@ type SqlitePost = {
  */
 async function main() {
   const db = await open({
-    filename: "./database.db",
+    filename: "./backup/database.db",
     driver: sqlite3.Database,
   });
   const oldPosts = await db.all<SqlitePost[]>(
     "SELECT instagram_uuid, url, inserted_at FROM Post ORDER BY inserted_at DESC",
   );
 
-  logger.info("Pushing posts into Turso.");
-  for (const post of oldPosts) {
+  for await (const post of oldPosts) {
+    const fileName = post.url.replace("posts/", "");
+    const data = await readFile(`backup/posts/${fileName}`);
+    const { url } = await put(fileName, data, { access: "public" });
+    await Turso.Posts.create({ ...post, url });
     logger.inline.info(".");
-    await Turso.Posts.create(post);
   }
   logger.inline.newline();
 
-  logger.success(`Success!`);
+  logger.success("Success!");
 }
 
 void main();
