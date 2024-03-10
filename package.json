@@ -9,7 +9,7 @@
     "dev:old": "next dev",
     "lint": "next lint",
     "start": "next start",
-    "migrate": "NODE_ENV=development RUNNING_IN_CLI=true tsx srcipts/migrate.ts",
+    "migrate": "NODE_ENV=development RUNNING_IN_CLI=true tsx scripts/migrate.ts",
     "cli": "NODE_ENV=development RUNNING_IN_CLI=true tsx"
   },
   "dependencies": {
