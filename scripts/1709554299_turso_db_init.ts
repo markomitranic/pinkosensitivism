@@ -3,7 +3,7 @@ import Turso from "~/lib/turso/Turso";
 import { logger } from "./logger";
 
 /**
- * @example pnpm tsx ./scripts/db_init.ts
+ * @example pnpm tsx ./scripts/1709554299_turso_db_init.ts
  */
 async function main() {
   await Turso.client.execute(`CREATE TABLE IF NOT EXISTS Post (

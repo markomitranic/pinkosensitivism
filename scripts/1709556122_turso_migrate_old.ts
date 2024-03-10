@@ -18,7 +18,7 @@ type SqlitePost = {
  *
  * It performs an in-memory deduplication of the incoming posts.
  *
- * @example pnpm cli ./scripts/db_migrate_old.ts
+ * @example pnpm cli ./scripts/1709556122_turso_migrate_old.ts
  */
 async function main() {
   const db = await open({
