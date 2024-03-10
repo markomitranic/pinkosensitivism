@@ -9,6 +9,7 @@ export const env = createEnv({
   server: {
     NODE_ENV: z.enum(["development", "test", "production"]),
     INSTAGRAM_API_TOKEN: z.string(),
+    POSTGRES_URL: z.string(),
     TURSO_DATABASE: z.string(),
     TURSO_AUTH_TOKEN: z.string(),
     BLOB_READ_WRITE_TOKEN: z.string(),
@@ -30,6 +31,7 @@ export const env = createEnv({
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
     INSTAGRAM_API_TOKEN: process.env.INSTAGRAM_API_TOKEN,
+    POSTGRES_URL: process.env.POSTGRES_URL,
     TURSO_DATABASE: process.env.TURSO_DATABASE,
     TURSO_AUTH_TOKEN: process.env.TURSO_AUTH_TOKEN,
     BLOB_READ_WRITE_TOKEN: process.env.BLOB_READ_WRITE_TOKEN,
