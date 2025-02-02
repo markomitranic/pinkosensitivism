@@ -3,9 +3,9 @@
 import { createEnv } from "@t3-oss/env-nextjs";
 import { z } from "zod";
 
-const booleanStrictCoerce = z
-  .enum(["true", "false"])
-  .transform((v) => v === "true");
+// const booleanStrictCoerce = z
+//   .enum(["true", "false"])
+//   .transform((v) => v === "true");
 
 export const env = createEnv({
   /**
@@ -13,7 +13,10 @@ export const env = createEnv({
    * isn't built with invalid env vars.
    */
   server: {
-    ROBOTS_ALLOW: booleanStrictCoerce,
+    // ROBOTS_ALLOW: booleanStrictCoerce,
+    DATABASE_URL: z.string().min(1),
+    BLOB_READ_WRITE_TOKEN: z.string().min(1),
+    INSTAGRAM_API_TOKEN: z.string().min(1),
   },
 
   /**
@@ -40,6 +43,9 @@ export const env = createEnv({
   runtimeEnv: {
     // Server
     ROBOTS_ALLOW: process.env.ROBOTS_ALLOW,
+    DATABASE_URL: process.env.DATABASE_URL,
+    BLOB_READ_WRITE_TOKEN: process.env.BLOB_READ_WRITE_TOKEN,
+    INSTAGRAM_API_TOKEN: process.env.INSTAGRAM_API_TOKEN,
     // Shared
     NODE_ENV:
       process.env.VERCEL_ENV ??

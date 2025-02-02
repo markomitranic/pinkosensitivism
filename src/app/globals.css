@@ -1,10 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @layer utilities {
   .debug {
-    @apply rounded-sm border-[1px] border-red-500;
+    @apply rounded-md border-[1px] border-red-500;
   }
   .debug * {
     @apply border-[1px] border-dotted border-red-300;

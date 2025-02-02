@@ -1,3 +1,5 @@
+"use client";
+
 import JsonView from "@uiw/react-json-view";
 import { darkTheme } from "@uiw/react-json-view/dark";
 import { cn } from "~/utils/cn";

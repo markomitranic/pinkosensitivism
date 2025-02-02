@@ -13,8 +13,6 @@
     "plaintext": "html"
   },
   "tailwindCSS.experimental.classRegex": [
-    ["twJoin\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
-    ["twMerge\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
     ["cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
   ],
   "typescript.enablePromptUseWorkspaceTsdk": true,
@@ -25,7 +23,6 @@
     "source.organizeImports": "explicit",
     "source.sortMembers": "explicit"
   },
-  "css.customData": [".vscode/tailwind.json"],
   "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
