@@ -7,7 +7,11 @@
     "start": "next start",
     "build": "next build",
     "dev": "next dev --turbopack",
-    "lint": "next lint"
+    "lint": "npm run lint:code && npm run lint:style && npm run lint:typecheck",
+    "lint:code": "next lint",
+    "lint:style": "npx prettier -c .",
+    "lint:fix": "npx prettier -c . --write & next lint --fix",
+    "lint:typecheck": "tsc --noEmit"
   },
   "browserslist": [
     "last 2 versions, not dead, > 0.2%"

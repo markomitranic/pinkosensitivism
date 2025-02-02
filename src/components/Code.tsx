@@ -1,7 +1,7 @@
 "use client";
 
-import { cn } from "~/utils/tailwind/cn";
-import { ChildrenType } from "~/utils/types/ChildrenType";
+import { cn } from "~/utils/cn";
+import { type ChildrenType } from "~/utils/types/ChildrenType";
 
 /**
  * Prints out a text snippet with preformatted styling.
