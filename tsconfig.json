@@ -21,7 +21,7 @@
     "lib": ["dom", "dom.iterable", "ES2022"],
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./src/*"],
+      "~/*": ["./src/*"]
     },
     "typeRoots": ["./node_modules/@types", "./src/types"],
     "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json"

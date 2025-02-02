@@ -1,6 +1,7 @@
 # Pinkosensitivism Website
 
 ## Usage
+
 ```bash
 pnpm i
 pnpm build
@@ -8,12 +9,10 @@ pnpm tsx ./scripts/play.ts
 pnpm dev
 ```
 
-
 ## DOCS todos:
 
 - how to do migrations manually
 - how to run sync manually
-
 
 ## TODOS:
 

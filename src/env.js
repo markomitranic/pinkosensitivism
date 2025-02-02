@@ -1,18 +1,25 @@
 import { createEnv } from "@t3-oss/env-nextjs";
 import { z } from "zod";
 
+const booleanStrictCoerce = z
+  .enum(["true", "false"])
+  .transform((v) => v === "true");
+
 export const env = createEnv({
   /**
    * Specify your server-side environment variables schema here. This way you can ensure the app
    * isn't built with invalid env vars.
    */
   server: {
-    NODE_ENV: z.enum(["development", "test", "production"]),
-    INSTAGRAM_API_TOKEN: z.string(),
-    POSTGRES_URL: z.string(),
-    TURSO_DATABASE: z.string(),
-    TURSO_AUTH_TOKEN: z.string(),
-    BLOB_READ_WRITE_TOKEN: z.string(),
+    ROBOTS_ALLOW: booleanStrictCoerce,
+  },
+
+  /**
+   * Used exclusively for public system/framework values that exist on both environments.
+   * They don't require `NEXT_PUBLIC_` prefix, but are definitely publicly available!
+   */
+  shared: {
+    NODE_ENV: z.enum(["development", "test", "preview", "production"]),
   },
 
   /**
@@ -29,12 +36,15 @@ export const env = createEnv({
    * middlewares) or client-side so we need to destruct manually.
    */
   runtimeEnv: {
-    NODE_ENV: process.env.NODE_ENV,
-    INSTAGRAM_API_TOKEN: process.env.INSTAGRAM_API_TOKEN,
-    POSTGRES_URL: process.env.POSTGRES_URL,
-    TURSO_DATABASE: process.env.TURSO_DATABASE,
-    TURSO_AUTH_TOKEN: process.env.TURSO_AUTH_TOKEN,
-    BLOB_READ_WRITE_TOKEN: process.env.BLOB_READ_WRITE_TOKEN,
+    // Server
+    ROBOTS_ALLOW: process.env.ROBOTS_ALLOW,
+    // Shared
+    NODE_ENV:
+      process.env.VERCEL_ENV ??
+      process.env.NEXT_PUBLIC_VERCEL_ENV ??
+      process.env.NODE_ENV ??
+      "development",
+    // Client
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**
