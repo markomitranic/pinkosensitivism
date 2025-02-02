@@ -1,13 +1,25 @@
 /**
- * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
- * for Docker builds.
+ * Basic NextJS Configuration
+ * @type {import("next").NextConfig}
  */
-await import("./src/env.js");
-
-/** @type {import("next").NextConfig} */
 const config = {
+  eslint: { ignoreDuringBuilds: true },
   images: {
-    remotePatterns: [{ hostname: "*.public.blob.vercel-storage.com" }],
+    minimumCacheTTL: 31536000,
+  },
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          // Set cache headers, on all pages.
+          {
+            key: "Cache-Control",
+            value: "public, s-maxage=300, stale-while-revalidate=300",
+          },
+        ],
+      },
+    ];
   },
 };
 

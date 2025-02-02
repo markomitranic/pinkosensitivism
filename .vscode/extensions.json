@@ -1,10 +1,10 @@
 {
   "recommendations": [
-    "dangmai.workspace-default-settings",
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
     "bradlc.vscode-tailwindcss",
     "mikestead.dotenv",
-    "yzhang.markdown-all-in-one"
+    "yoavbls.pretty-ts-errors",
+    "foxundermoon.shell-format"
   ]
 }
