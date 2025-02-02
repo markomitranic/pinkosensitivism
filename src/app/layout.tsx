@@ -1,6 +1,5 @@
 import "~/styles/globals.css";
 
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Inter } from "next/font/google";
 
 const inter = Inter({
@@ -21,10 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`font-sans ${inter.variable}`}>
-        {children}
-        <SpeedInsights />
-      </body>
+      <body className={`font-sans ${inter.variable}`}>{children}</body>
     </html>
   );
 }
