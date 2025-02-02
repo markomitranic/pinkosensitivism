@@ -1,5 +1,6 @@
 import JsonView from "@uiw/react-json-view";
 import { darkTheme } from "@uiw/react-json-view/dark";
+import { cn } from "~/utils/tailwind/cn";
 
 /**
  * Dumps a variable as a component on the page.
