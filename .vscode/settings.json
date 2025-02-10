@@ -1,14 +1,7 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
-  "tailwindCSS.classAttributes": ["className", "class"],
-  "files.associations": {
-    "*.css": "tailwindcss"
-  },
-  "search.exclude": {
-    "**/node_modules": true,
-    "**/.next": true,
-    "**/.vercel": true
-  },
+  "tailwindCSS.classAttributes": ["class"],
+  "files.associations": { "*.css": "tailwindcss" },
   "tailwindCSS.includeLanguages": {
     "plaintext": "html"
   },

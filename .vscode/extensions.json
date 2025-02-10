@@ -5,6 +5,8 @@
     "bradlc.vscode-tailwindcss",
     "mikestead.dotenv",
     "yoavbls.pretty-ts-errors",
-    "foxundermoon.shell-format"
-  ]
+    "foxundermoon.shell-format",
+    "astro-build.astro-vscode"
+  ],
+  "unwantedRecommendations": []
 }
