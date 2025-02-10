@@ -1,1 +1,10 @@
 @import "tailwindcss";
+
+@layer utilities {
+  .debug {
+    @apply rounded-md border-[1px] border-red-500;
+  }
+  .debug * {
+    @apply border-[1px] border-dotted border-red-300;
+  }
+}
