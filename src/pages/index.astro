@@ -1,17 +1,10 @@
 ---
-import { env } from "~/lib/env";
-import Client from "../components/Client.astro";
+import Client from "~/components/Client";
+import Welcome from "~/components/Welcome.astro";
 import Layout from "../layouts/Layout.astro";
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
-
-console.log(env.server.ALLOW_ROBOTS);
-console.log(env.client.ALLOW_CLIENT);
 ---
 
 <Layout>
-  <div class="debug block bg-red-500 text-right">THIS IS A TEST</div>
-  <div class="bg-pinko text-test text-right">THIS IS A TEST</div>
   <Client client:load />
+  <Welcome />
 </Layout>
