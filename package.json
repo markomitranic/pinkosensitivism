@@ -11,7 +11,10 @@
     "lint:code": "npx eslint \"src/**/*.{js,astro,tsx,ts}\"",
     "lint:style": "npx prettier -c .",
     "lint:typecheck": "tsc --noEmit",
-    "astro": "astro"
+    "nodecheck": "CODE_NODE_VERSION=\"v$(cat .nvmrc)\" && NODE_VERSION=$(node --version) && if [ $NODE_VERSION != $CODE_NODE_VERSION ]; then echo \"ERROR: Project Node: $CODE_NODE_VERSION, Actual Node: $NODE_VERSION\n\" && exit 1; fi",
+    "astro": "astro",
+    "husky": "./.husky/pre-push",
+    "prepare": "husky"
   },
   "dependencies": {
     "@astrojs/solid-js": "^5.0.4",
@@ -29,6 +32,7 @@
     "eslint": "^9.20.0",
     "eslint-plugin-astro": "^1.3.1",
     "eslint-plugin-jsx-a11y": "^6.10.2",
+    "husky": "^9.1.7",
     "prettier": "3.5.0",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "0.6.11",

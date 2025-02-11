@@ -4,7 +4,6 @@
 /** @type { PrettierConfig | TailwindConfig } */
 const config = {
   plugins: ["prettier-plugin-astro", "prettier-plugin-tailwindcss"],
-
   overrides: [
     {
       files: "*.astro",
