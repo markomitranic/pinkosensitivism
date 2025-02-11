@@ -1,14 +1,29 @@
-// @ts-check
-import { defineConfig } from 'astro/config';
+import solidJs from "@astrojs/solid-js";
+import vercel from "@astrojs/vercel";
+import tailwindcss from "@tailwindcss/vite";
+import { defineConfig, envField } from "astro/config";
 
-import tailwindcss from '@tailwindcss/vite';
-import vercel from '@astrojs/vercel';
-
-// https://astro.build/config
+/** @see https://astro.build/config */
 export default defineConfig({
+  adapter: vercel(),
+  integrations: [solidJs()],
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
   },
-
-  adapter: vercel()
+  env: {
+    validateSecrets: true,
+    schema: {
+      ALLOW_CLIENT: envField.boolean({ context: "client", access: "public" }),
+      ALLOW_ROBOTS: envField.boolean({ context: "server", access: "public" }),
+      DATABASE_URL: envField.string({ context: "server", access: "secret" }),
+      BLOB_READ_WRITE_TOKEN: envField.string({
+        context: "server",
+        access: "secret",
+      }),
+      INSTAGRAM_API_TOKEN: envField.string({
+        context: "server",
+        access: "secret",
+      }),
+    },
+  },
 });
