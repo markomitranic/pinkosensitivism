@@ -1,0 +1,31 @@
+---
+import { isObject } from "lodash-es";
+import type { DbgChildren } from "./Dbg.react";
+import { DbgInner } from "./DbgInner.astro.react";
+
+/**
+ * Dumps a variable as a component on the page.
+ * Equivalent of `dump` in Symfony or `dbg` in Livebooks..
+ *
+ * @deprecated **Should only be used for development.**
+ *
+ * @example
+ * ```astro
+ * <Dbg data={{ foo: "bar" }} title="Debug Data" />
+ * ```
+ */
+type Props = {
+  /** Data must be an object, array or a primitive value. */
+  data: DbgChildren;
+  /** Title of the debug output. */
+  title?: string;
+  /** CSS class name. */
+  class?: string;
+};
+
+const { data, title, class: className } = Astro.props;
+---
+
+<DbgInner client:only="react" title={title} className={className}>
+  {JSON.stringify(isObject(data) ? data : { RAW_VALUE: data })}
+</DbgInner>

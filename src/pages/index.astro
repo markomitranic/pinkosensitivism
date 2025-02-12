@@ -1,10 +1,8 @@
 ---
-import Client from "~/components/Client";
-import Welcome from "~/components/Welcome.astro";
+import Dbg from "~/components/utils/Dbg.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-  <Client client:load />
-  <Welcome />
+  <Dbg data={false} />
 </Layout>
