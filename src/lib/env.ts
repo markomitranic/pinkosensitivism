@@ -18,7 +18,23 @@ if (import.meta.env.SSR) {
   server = await import("astro:env/server");
 }
 
+/**
+ * A wrapper around validated environment variables.
+ *
+ * Contains both client and server varibles, but will only load the client values when
+ * on the client, as server variables are not available on the client - they will all be undefined.
+ *
+ * @example
+ * console.log(env.server.ALLOW_ROBOTS);
+ */
 export const env = {
+  /**
+   * Server-only environment variables.
+   * Will be `undefined`, and throw an error if accessed on the client.
+   */
   server,
+  /**
+   * Client-only environment variables.
+   */
   client,
 } as const;

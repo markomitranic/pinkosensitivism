@@ -1,8 +1,12 @@
 ---
 import Dbg from "~/components/utils/Dbg.astro";
+import Welcome from "~/components/Welcome.astro";
+import { env } from "~/lib/env";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-  <Dbg data={false} />
+  <Dbg title="Server ENV Variables" data={env.server} />
+  <Dbg title="Client ENV Variables" data={env.client} />
+  <Welcome />
 </Layout>
