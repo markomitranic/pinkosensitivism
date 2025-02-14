@@ -1,15 +1,16 @@
+import react from "@astrojs/react";
 import solid from "@astrojs/solid-js";
 import vercel from "@astrojs/vercel";
 import tailwindcss from "@tailwindcss/vite";
+import astroDevToolBreakpoints from "astro-devtool-breakpoints";
 import { defineConfig, envField } from "astro/config";
 import path from "path";
-
-import react from "@astrojs/react";
 
 /** @see https://astro.build/config */
 export default defineConfig({
   adapter: vercel(),
   integrations: [
+    astroDevToolBreakpoints(),
     react({ include: ["**/*.react.tsx"] }),
     solid({ include: ["**/*.solid.tsx"] }),
   ],
