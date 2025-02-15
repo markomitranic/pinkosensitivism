@@ -11,9 +11,12 @@
 }
 
 @utility dbg {
-    @apply rounded-md border-[1px] border-red-500;
+  @apply rounded-md border-[1px] border-red-500;
 
   & * {
     @apply border-[1px] border-dotted border-red-300;
   }
+}
+@utility clamp-text-* {
+  font-size: clamp(--value([ *]));
 }
