@@ -1,26 +1,19 @@
 @import "tailwindcss";
 
 @theme {
-  /* Vanilla Ice */
-  --color-pinko: #f5ddde;
-  --color-pinko-50: #fbf5f5;
-  --color-pinko-100: #f8e8e9;
-  --color-pinko-200: #f5ddde;
-  --color-pinko-300: #e9b8ba;
-  --color-pinko-400: #db8e91;
-  --color-pinko-500: #ca696d;
-  --color-pinko-600: #b54d51;
-  --color-pinko-700: #973e42;
-  --color-pinko-800: #7e3639;
-  --color-pinko-900: #6a3234;
-  --color-pinko-950: #381718;
+  --font-sans: "Roboto", sans-serif;
 }
 
-@layer utilities {
-  .debug {
+@theme {
+  /* Vanilla Ice */
+  --color-pinko: rgb(245, 221, 222);
+  --color-pinko-dirty: #dbb2b4;
+}
+
+@utility dbg {
     @apply rounded-md border-[1px] border-red-500;
-  }
-  .debug * {
+
+  & * {
     @apply border-[1px] border-dotted border-red-300;
   }
 }

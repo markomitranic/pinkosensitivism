@@ -20,6 +20,7 @@
     "@astrojs/react": "^4.2.0",
     "@astrojs/solid-js": "^5.0.4",
     "@astrojs/vercel": "^8.0.6",
+    "@fontsource/roboto": "^5.1.1",
     "@tailwindcss/vite": "^4.0.6",
     "@uiw/react-json-view": "2.0.0-alpha.30",
     "astro": "^5.2.5",
