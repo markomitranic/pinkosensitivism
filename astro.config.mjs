@@ -20,6 +20,9 @@ export default defineConfig({
       },
     },
   },
+  image: {
+    domains: ["pinkosensitivism.com"],
+  },
   env: {
     validateSecrets: true,
     schema: {
