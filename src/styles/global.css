@@ -9,6 +9,8 @@
   --color-pinko: rgb(245, 221, 222);
   --color-pinko-70: #fbf5f5;
   --color-pinko-dirty: #dbb2b4;
+
+  --breakpoint-mid: 980px;
 }
 
 @utility dbg {

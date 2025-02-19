@@ -1,0 +1,14 @@
+---
+import { cn } from "~/lib/utils/cn";
+
+const { class: className } = Astro.props;
+---
+
+<h2
+  class={cn(
+    "text-pinko-dirty mt-10 mb-5 text-[22px] leading-[30px] font-semibold tracking-[-1px] sm:text-[26px]",
+    className,
+  )}
+>
+  <slot />
+</h2>
