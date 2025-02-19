@@ -1,0 +1,41 @@
+---
+import { Image } from "astro:assets";
+import Hero from "~/components/Hero.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout class="pb-20">
+  <Hero slot="hero" class="min-h-80 pt-16 pb-20" />
+
+  <div class="mx-auto w-full max-w-[1020px] px-[30px] md:px-5">
+    <article>
+      <h2
+        class="text-pinko-dirty mt-10 mb-5 text-[22px] leading-[30px] font-semibold tracking-[-1px] sm:text-[26px]"
+      >
+        Pinkosensitivism as Neologism
+      </h2>
+      <p
+        class="my-[26px] text-[18px] leading-[1.66] text-white sm:text-[26px] sm:leading-[32px]"
+      >
+        With, so far, almost 4k individual posts, the question that poses itself
+        is – What makes an –ism? In this project, the author as an individual
+        ceases to exist, and #pinkosensitivism has a life on its own which keeps
+        changing. Now, more and more, there are collaborations, and clusters
+        where sometimes people work together on larger art projects within the
+        #pinkosensitivism.
+      </p>
+
+      <div class="my-24 flex justify-center">
+        <Image
+          src="/images/manifesto.gif"
+          alt="Ben Lewis - What is Relational Art?"
+          width={700}
+          height={500}
+          class="rounded-xs"
+          loading="eager"
+          priority
+        />
+      </div>
+    </article>
+  </div>
+</Layout>
