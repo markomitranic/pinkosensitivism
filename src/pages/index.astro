@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import Hero from "~/components/Hero.astro";
 import Layout from "../layouts/Layout.astro";
 import { cn } from "../lib/utils/cn";
 
@@ -8,22 +9,7 @@ const posts = Array.from({ length: 13 });
 ---
 
 <Layout class="pb-20">
-  <div
-    slot="hero"
-    class="flex min-h-screen flex-col items-center justify-center px-7"
-  >
-    <h1
-      class="clamp-text-[2.125rem,8vw,7rem] lg:clamp-text-[2.125rem,6vw,5rem] xl:clamp-text-[2.125rem,8vw,7rem] text-center font-bold tracking-[-2px]"
-    >
-      #PINKOSENSITIVISM
-    </h1>
-    <p
-      class="clamp-text-[1rem,3vw,2rem] text-pinko-70 mx-auto mt-8 max-w-[860px] text-center"
-    >
-      /pɪŋkoʊˈsɛnsətɪvɪz(ə)m/ - Neologism that represents the collective work of
-      art in the age of virtual connectivity
-    </p>
-  </div>
+  <Hero slot="hero" />
 
   <div class="instagram-wrap mx-auto max-w-[860px] px-5">
     <ul

@@ -20,4 +20,5 @@
 }
 @utility clamp-text-* {
   font-size: clamp(--value([ *]));
+  line-height: clamp(--value([ *]));
 }
