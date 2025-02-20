@@ -37,6 +37,32 @@ export default defineConfig({
         context: "server",
         access: "secret",
       }),
+      // S3/R2 Configuration
+      S3_ENDPOINT: envField.string({
+        context: "server",
+        access: "secret",
+        description: "Cloudflare R2 endpoint URL",
+      }),
+      S3_ACCESS_KEY_ID: envField.string({
+        context: "server",
+        access: "secret",
+        description: "Cloudflare R2 access key ID",
+      }),
+      S3_SECRET_ACCESS_KEY: envField.string({
+        context: "server",
+        access: "secret",
+        description: "Cloudflare R2 secret access key",
+      }),
+      S3_BUCKET_NAME: envField.string({
+        context: "server",
+        access: "secret",
+        description: "Cloudflare R2 bucket name",
+      }),
+      S3_PUBLIC_URL: envField.string({
+        context: "client",
+        access: "public",
+        description: "Public URL for accessing S3/R2 objects",
+      }),
     },
   },
 });
