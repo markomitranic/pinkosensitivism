@@ -29,10 +29,6 @@ export default defineConfig({
       ALLOW_CLIENT: envField.boolean({ context: "client", access: "public" }),
       ALLOW_ROBOTS: envField.boolean({ context: "server", access: "public" }),
       DATABASE_URL: envField.string({ context: "server", access: "secret" }),
-      BLOB_READ_WRITE_TOKEN: envField.string({
-        context: "server",
-        access: "secret",
-      }),
       INSTAGRAM_API_TOKEN: envField.string({
         context: "server",
         access: "secret",
