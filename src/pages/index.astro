@@ -1,11 +1,12 @@
 ---
 import { Image } from "astro:assets";
 import Hero from "~/components/Hero.astro";
+import { PostRepository } from "~/lib/PostRepository";
 import Layout from "../layouts/Layout.astro";
 import { cn } from "../lib/utils/cn";
 
 // Add styles for the Instagram grid
-const posts = Array.from({ length: 13 });
+const posts = await PostRepository.all();
 ---
 
 <Layout class="pb-20">
@@ -20,31 +21,26 @@ const posts = Array.from({ length: 13 });
       )}
     >
       {
-        posts.map((_) => (
+        posts.map((url, index) => (
           <li class="aspect-square w-full">
             <a
               href="https://www.instagram.com/explore/tags/pinkosensitivism/"
               target="_blank"
               rel="nofollow"
               title="Visit Pinkosensitivism Hashtag on Instagram"
-              class="block h-full w-full"
+              class="block h-full w-full transition-transform duration-300 hover:scale-105 hover:shadow"
             >
-              <article
-                class="h-full w-full bg-cover bg-center transition-transform duration-300 hover:scale-105"
-                style="background-image: url('https://pinkosensitivism.com/posts/5e6bacdc-7387-40f0-9665-43bd42a63736.png');"
-              >
-                <Image
-                  src="https://pinkosensitivism.com/posts/5e6bacdc-7387-40f0-9665-43bd42a63736.png"
-                  alt="Visit Pinkosensitivism Hashtag on Instagram"
-                  class="h-full w-full object-cover opacity-0"
-                  width={250}
-                  height={250}
-                  densities={[1, 2]}
-                  sizes="(max-width: 768px) 40vw, 250px"
-                  quality={80}
-                  loading="lazy"
-                />
-              </article>
+              <Image
+                src={url}
+                alt="Visit Pinkosensitivism Hashtag on Instagram"
+                class="h-full w-full object-cover"
+                width={250}
+                height={250}
+                densities={[1, 2]}
+                sizes="(max-width: 768px) 40vw, 250px"
+                quality={80}
+                loading={index < 9 ? "eager" : "lazy"}
+              />
             </a>
           </li>
         ))
