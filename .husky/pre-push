@@ -13,11 +13,11 @@ fi
 echo "💽 (operation) Checking Node version."
 pnpm nodecheck
 
-echo "👀 (operation) Linting all files."
-pnpm lint:code
-
 echo "💅 (operation) Prettier."
 pnpm lint:style
+
+echo "👀 (operation) Linting all files."
+pnpm lint:code
 
 echo "\n🤖 (operation) Compile TypeScript."
 pnpm lint:typecheck

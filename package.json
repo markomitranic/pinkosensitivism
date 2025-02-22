@@ -7,7 +7,7 @@
     "build": "astro build --remote",
     "preview": "astro preview",
     "start": "astro preview",
-    "lint": "npm run lint:code && npm run lint:style && npm run lint:typecheck",
+    "lint": "pnpm lint:style && pnpm lint:code && pnpm lint:typecheck",
     "lint:code": "npx eslint \"src/**/*.{js,astro,tsx,ts}\"",
     "lint:style": "npx prettier -c .",
     "lint:typecheck": "tsc --noEmit",
