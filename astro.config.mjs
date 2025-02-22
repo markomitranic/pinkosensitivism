@@ -23,7 +23,7 @@ export default defineConfig({
     },
   },
   image: {
-    domains: ["pinkosensitivism.com"],
+    domains: ["pinkosensitivism.com", "storage.pinkosensitivism.com"],
   },
   env: {
     validateSecrets: true,
