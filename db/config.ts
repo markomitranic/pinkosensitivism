@@ -1,6 +1,6 @@
 import { column, defineDb, defineTable } from "astro:db";
 
-const Posts = defineTable({
+export const Posts = defineTable({
   columns: {
     id: column.number({ primaryKey: true, autoIncrement: true }),
     instagram_uuid: column.text(),

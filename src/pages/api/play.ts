@@ -1,6 +1,5 @@
+import { count, db, Posts } from "astro:db";
 import createHttpError from "http-errors";
-import { z } from "zod";
-import posts from "~/../database.json";
 import { env } from "~/lib/env";
 import { ApiRoute } from "~/lib/utils/ApiRoute";
 
@@ -13,18 +12,12 @@ import { ApiRoute } from "~/lib/utils/ApiRoute";
  * curl -s http://localhost:3000/api/play/ | json_pp
  * ```
  */
-// eslint-disable-next-line @typescript-eslint/require-await
+
 export const GET = ApiRoute(async () => {
   if (!env.meta.DEV) throw createHttpError.NotFound();
 
-  const validatedPosts = z
-    .object({
-      id: z.number(),
-      instagram_uuid: z.string(),
-      url: z.string(),
-      inserted_at: z.string(),
-    })
-    .array()
-    .parse(posts);
-  return validatedPosts;
+  return {
+    count: (await db.select({ count: count() }).from(Posts))[0].count,
+    items: await db.select().from(Posts),
+  };
 });
