@@ -8,7 +8,12 @@ import path from "path";
 
 /** @see https://astro.build/config */
 export default defineConfig({
-  adapter: vercel(),
+  adapter: vercel({
+    imagesConfig: {
+      domains: ["pinkosensitivism.com", "storage.pinkosensitivism.com"],
+      minimumCacheTTL: 31536000,
+    },
+  }),
   integrations: [
     react({ include: ["**/*.react.tsx"] }),
     solid({ include: ["**/*.solid.tsx"] }),
