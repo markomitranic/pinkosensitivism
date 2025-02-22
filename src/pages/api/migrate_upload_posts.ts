@@ -64,12 +64,12 @@ export const GET = ApiRoute(async () => {
   }
 
   console.log(`
-Migration complete:
-- Total files: ${results.total}
-- Uploaded: ${results.uploaded}
-- Skipped: ${results.skipped}
-- Failed: ${results.failed}
-`);
+    Migration complete:
+    - Total files: ${results.total}
+    - Uploaded: ${results.uploaded}
+    - Skipped: ${results.skipped}
+    - Failed: ${results.failed}
+  `);
 
   return results;
 });
