@@ -17,6 +17,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@astrojs/db": "^0.14.6",
     "@astrojs/react": "^4.2.0",
     "@astrojs/solid-js": "^5.0.4",
     "@astrojs/vercel": "^8.0.6",
