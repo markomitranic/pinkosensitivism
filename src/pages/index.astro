@@ -1,4 +1,5 @@
 ---
+import { blurhashToCssGradientString } from "@unpic/placeholder";
 import CfImage from "~/components/CfImage.astro";
 import Hero from "~/components/Hero.astro";
 import { PostRepository } from "~/lib/PostRepository";
@@ -20,7 +21,7 @@ const posts = await PostRepository.all();
       )}
     >
       {
-        posts.map((url, index) => (
+        posts.map(({ url, blurhash }, index) => (
           <li class="aspect-square w-full">
             <a
               href="https://www.instagram.com/explore/tags/pinkosensitivism/"
@@ -32,12 +33,15 @@ const posts = await PostRepository.all();
               <CfImage
                 src={url}
                 alt="Visit Pinkosensitivism Hashtag on Instagram"
-                class="h-full w-full object-cover"
-                width={250}
-                height={250}
+                width={500}
+                height={500}
                 sizes="(max-width: 768px) 40vw, 250px"
+                breakpoints={[250, 500]}
                 loading={index < 9 ? "eager" : "lazy"}
                 priority={index < 9}
+                background={
+                  blurhash ? blurhashToCssGradientString(blurhash) : undefined
+                }
               />
             </a>
           </li>
