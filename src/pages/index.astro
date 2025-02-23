@@ -1,11 +1,10 @@
 ---
-import { Image } from "astro:assets";
+import CfImage from "~/components/CfImage.astro";
 import Hero from "~/components/Hero.astro";
 import { PostRepository } from "~/lib/PostRepository";
 import Layout from "../layouts/Layout.astro";
 import { cn } from "../lib/utils/cn";
 
-// Add styles for the Instagram grid
 const posts = await PostRepository.all();
 ---
 
@@ -30,16 +29,15 @@ const posts = await PostRepository.all();
               title="Visit Pinkosensitivism Hashtag on Instagram"
               class="block h-full w-full transition-transform duration-300 hover:scale-105 hover:shadow"
             >
-              <Image
+              <CfImage
                 src={url}
                 alt="Visit Pinkosensitivism Hashtag on Instagram"
                 class="h-full w-full object-cover"
                 width={250}
                 height={250}
-                densities={[1, 2]}
                 sizes="(max-width: 768px) 40vw, 250px"
-                quality={80}
                 loading={index < 9 ? "eager" : "lazy"}
+                priority={index < 9}
               />
             </a>
           </li>

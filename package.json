@@ -25,6 +25,7 @@
     "@fontsource/roboto": "^5.1.1",
     "@tailwindcss/vite": "^4.0.6",
     "@uiw/react-json-view": "2.0.0-alpha.30",
+    "@unpic/astro": "^1.0.0",
     "astro": "^5.2.5",
     "dayjs": "^1.11.13",
     "http-errors": "^2.0.0",
