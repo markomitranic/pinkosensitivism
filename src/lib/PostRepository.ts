@@ -23,7 +23,7 @@ export const PostRepository = {
     if (!url) throw new Error("URL is required");
     const imageData = await getPixels(url);
     const data = Uint8ClampedArray.from(imageData.data);
-    const blurhash = encode(data, imageData.width, imageData.height, 8, 8);
+    const blurhash = encode(data, imageData.width, imageData.height, 4, 4);
     return blurhash;
   },
 };
