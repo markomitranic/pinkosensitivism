@@ -5,6 +5,7 @@ export const Posts = defineTable({
     id: column.number({ primaryKey: true, autoIncrement: true }),
     instagram_uuid: column.text(),
     filepath: column.text(),
+    blurhash: column.text({ optional: true }),
     posted_at: column.text(),
   },
 });

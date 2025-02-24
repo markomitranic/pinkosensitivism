@@ -10,6 +10,7 @@ export default async function seed() {
     .object({
       instagram_uuid: z.string(),
       filepath: z.string(),
+      blurhash: z.string().optional(),
       posted_at: z.string(),
     })
     .array()
