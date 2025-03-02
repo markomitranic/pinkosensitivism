@@ -1,7 +1,14 @@
 ---
 import { isObject } from "lodash-es";
-import { DbgInner } from "./Dbg.astro.react";
-import type { DbgChildren } from "./Dbg.react";
+
+type DbgChildren =
+  | object
+  | Array<unknown>
+  | string
+  | number
+  | boolean
+  | null
+  | undefined;
 
 /**
  * Dumps a variable as a component on the page.
@@ -26,6 +33,6 @@ type Props = {
 const { data, title, class: className } = Astro.props;
 ---
 
-<DbgInner client:only="react" title={title} className={className}>
+<div title={title} class={className}>
   {JSON.stringify(isObject(data) ? data : { RAW_VALUE: data })}
-</DbgInner>
+</div>

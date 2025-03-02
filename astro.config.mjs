@@ -1,6 +1,4 @@
 import db from "@astrojs/db";
-import react from "@astrojs/react";
-import solid from "@astrojs/solid-js";
 import vercel from "@astrojs/vercel";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, envField } from "astro/config";
@@ -9,11 +7,7 @@ import path from "path";
 /** @see https://astro.build/config */
 export default defineConfig({
   adapter: vercel(),
-  integrations: [
-    react({ include: ["**/*.react.tsx"] }),
-    solid({ include: ["**/*.solid.tsx"] }),
-    db(),
-  ],
+  integrations: [db()],
   vite: {
     plugins: [tailwindcss()],
     resolve: {

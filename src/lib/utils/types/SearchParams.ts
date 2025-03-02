@@ -2,7 +2,7 @@ type SearchParamValue = string | string[] | undefined;
 type GenericSearchParams = Record<string, SearchParamValue>;
 
 /**
- * Represents the GET search parameters of a URL in `page.tsx` files.
+ * Represents the GET search parameters of a URL.
  *
  * **All required generics parameters will be cast as optional.**
  *

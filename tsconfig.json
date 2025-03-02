@@ -7,7 +7,6 @@
     ".astro/types.d.ts",
     "global.d.ts",
     "**/*.ts",
-    "**/*.tsx",
     "**/*.astro"
   ],
   "exclude": ["dist", "node_modules"],
@@ -16,8 +15,6 @@
     "paths": {
       "~/*": ["./src/*"]
     },
-    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
-    "jsx": "react-jsx",
-    "jsxImportSource": "react"
+    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json"
   }
 }
