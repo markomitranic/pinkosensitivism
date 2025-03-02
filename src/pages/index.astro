@@ -1,6 +1,7 @@
 ---
+import { Image as UnpicImage } from "@unpic/astro";
 import { blurhashToCssGradientString } from "@unpic/placeholder";
-import CfImage from "~/components/CfImage.astro";
+import { Image } from "astro:assets";
 import Hero from "~/components/Hero.astro";
 import { PostRepository } from "~/lib/PostRepository";
 import Layout from "../layouts/Layout.astro";
@@ -21,7 +22,7 @@ const posts = await PostRepository.all();
       )}
     >
       {
-        posts.map(({ url, blurhash }, index) => (
+        posts.slice(0, 9).map(({ url, blurhash }, index) => (
           <li class="aspect-square w-full">
             <a
               href="https://www.instagram.com/explore/tags/pinkosensitivism/"
@@ -30,8 +31,18 @@ const posts = await PostRepository.all();
               title="Visit Pinkosensitivism Hashtag on Instagram"
               class="block h-full w-full transition-transform duration-300 hover:scale-105 hover:shadow"
             >
-              <CfImage
+              <Image
                 src={url}
+                alt="Visit Pinkosensitivism Hashtag on Instagram"
+                width={500}
+                height={500}
+                sizes="(max-width: 768px) 40vw, 250px"
+                loading={index < 9 ? "eager" : "lazy"}
+                priority={index < 9}
+              />
+              <UnpicImage
+                src={url}
+                cdn="vercel"
                 alt="Visit Pinkosensitivism Hashtag on Instagram"
                 width={500}
                 height={500}
@@ -43,6 +54,19 @@ const posts = await PostRepository.all();
                   blurhash ? blurhashToCssGradientString(blurhash) : undefined
                 }
               />
+              {/* <CfImage
+                src={url}
+                alt="Visit Pinkosensitivism Hashtag on Instagram"
+                width={500}
+                height={500}
+                sizes="(max-width: 768px) 40vw, 250px"
+                breakpoints={[250, 500]}
+                loading={index < 9 ? "eager" : "lazy"}
+                priority={index < 9}
+                background={
+                  blurhash ? blurhashToCssGradientString(blurhash) : undefined
+                }
+              /> */}
             </a>
           </li>
         ))

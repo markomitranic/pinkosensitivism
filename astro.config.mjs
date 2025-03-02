@@ -6,7 +6,18 @@ import path from "path";
 
 /** @see https://astro.build/config */
 export default defineConfig({
-  adapter: vercel(),
+  adapter: vercel({
+    // isr: {
+    //    bypassToken: "005556d774a8"
+    // },
+    imageService: true,
+    devImageService: "sharp",
+    imagesConfig: {
+      domains: ["pinkosensitivism.com", "storage.pinkosensitivism.com"],
+      minimumCacheTTL: 31536000,
+      sizes: [250, 500],
+    },
+  }),
   integrations: [db()],
   vite: {
     plugins: [tailwindcss()],
