@@ -8,9 +8,6 @@ import path from "path";
 /** @see https://astro.build/config */
 export default defineConfig({
   adapter: vercel({
-    // isr: {
-    //    bypassToken: "005556d774a8"
-    // },
     imageService: true,
     devImageService: "sharp",
     imagesConfig: {
