@@ -1,6 +1,7 @@
 import db from "@astrojs/db";
 import vercel from "@astrojs/vercel";
 import tailwindcss from "@tailwindcss/vite";
+import { imageService } from "@unpic/astro/service";
 import { defineConfig, envField } from "astro/config";
 import path from "path";
 
@@ -28,6 +29,7 @@ export default defineConfig({
     },
   },
   image: {
+    service: imageService(),
     domains: ["pinkosensitivism.com", "storage.pinkosensitivism.com"],
   },
   env: {
