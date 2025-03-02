@@ -11,13 +11,13 @@ export default defineConfig({
     // isr: {
     //    bypassToken: "005556d774a8"
     // },
-    // imageService: true,
-    // devImageService: "sharp",
-    // imagesConfig: {
-    //   domains: ["pinkosensitivism.com", "storage.pinkosensitivism.com"],
-    //   minimumCacheTTL: 31536000,
-    //   sizes: [250, 500],
-    // },
+    imageService: true,
+    devImageService: "sharp",
+    imagesConfig: {
+      domains: ["pinkosensitivism.com", "storage.pinkosensitivism.com"],
+      minimumCacheTTL: 31536000,
+      sizes: [250, 500],
+    },
   }),
   integrations: [db()],
   vite: {
