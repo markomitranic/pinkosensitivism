@@ -1,8 +1,9 @@
 ---
 import Hero from "~/components/Hero.astro";
-import Blockquote from "~/components/primitives/Blockquote.astro";
+import FaQuoteLeft from "~/components/icons/FaQuoteLeft.astro";
 import H2 from "~/components/primitives/H2.astro";
 import Paragraph from "~/components/primitives/Paragraph.astro";
+import { cn } from "~/lib/utils/cn";
 import Layout from "../layouts/Layout.astro";
 ---
 
@@ -20,7 +21,14 @@ import Layout from "../layouts/Layout.astro";
         describes the audience and the goal of the project.
       </Paragraph>
 
-      <Blockquote>
+      <blockquote
+        class={cn(
+          "relative mx-auto my-0 w-[calc(100%-30px)] max-w-[860px] pt-[90px] pb-[40px] text-[14px] leading-[1.66]",
+          "sm:w-[calc(100%-100px)] sm:text-[22px] sm:leading-[28px]",
+          "mid:w-full",
+        )}
+      >
+        <FaQuoteLeft class="absolute top-0 -left-8 -z-10 w-[170px]" />
         <strong>Pink</strong>
         - Pale red color that is named after a flower of the same name. Pink is the
         color most often associated with charm, politeness, sensitivity, tenderness,
@@ -35,7 +43,7 @@ import Layout from "../layouts/Layout.astro";
         suffix -ισμός (-ismós). It is often used in philosophy to define specific
         ideologies, and, as such, at times it is used as a noun when referring to
         a broad range of ideologies in a general sense.
-      </Blockquote>
+      </blockquote>
 
       <H2>Explore #pinkosensitivism</H2>
       <Paragraph>
