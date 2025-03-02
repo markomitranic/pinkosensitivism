@@ -21,7 +21,7 @@ const posts = await PostRepository.all();
       )}
     >
       {
-        posts.slice(0, 9).map(({ url, blurhash }, index) => (
+        posts.map(({ url, blurhash }, index) => (
           <li class="aspect-square w-full">
             <a
               href="https://www.instagram.com/explore/tags/pinkosensitivism/"
