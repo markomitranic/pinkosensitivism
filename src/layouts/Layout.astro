@@ -1,15 +1,16 @@
 ---
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/700.css";
+import Analytics from "@vercel/analytics/astro";
+import BackToTop from "~/components/BackToTop.astro";
+import Header from "~/components/Header.astro";
+import "../styles/global.css";
+
 type Props = {
   class?: string;
 };
 
 const { class: className } = Astro.props;
-
-import "@fontsource/roboto/400.css";
-import "@fontsource/roboto/700.css";
-import BackToTop from "~/components/BackToTop.astro";
-import Header from "~/components/Header.astro";
-import "../styles/global.css";
 ---
 
 <!doctype html>
@@ -54,5 +55,6 @@ import "../styles/global.css";
     <slot />
 
     <BackToTop />
+    <Analytics />
   </body>
 </html>
