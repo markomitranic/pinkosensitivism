@@ -2,7 +2,7 @@ import { getPixels } from "@unpic/pixels";
 import { db, desc, Posts } from "astro:db";
 import { encode } from "blurhash";
 import { BlobStorage } from "./BlobStorage";
-import { filterNotEmpty } from "./utils/tooling/filterNotEmpty";
+import { filterNotEmpty } from "./utils/filterNotEmpty";
 
 export const PostRepository = {
   async all() {
