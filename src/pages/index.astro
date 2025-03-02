@@ -1,7 +1,6 @@
 ---
-import { Image as UnpicImage } from "@unpic/astro";
+import { Image } from "@unpic/astro";
 import { blurhashToCssGradientString } from "@unpic/placeholder";
-import { Image } from "astro:assets";
 import Hero from "~/components/Hero.astro";
 import { PostRepository } from "~/lib/PostRepository";
 import Layout from "../layouts/Layout.astro";
@@ -32,15 +31,6 @@ const posts = await PostRepository.all();
               class="block h-full w-full transition-transform duration-300 hover:scale-105 hover:shadow"
             >
               <Image
-                src={url}
-                alt="Visit Pinkosensitivism Hashtag on Instagram"
-                width={500}
-                height={500}
-                sizes="(max-width: 768px) 40vw, 250px"
-                loading={index < 9 ? "eager" : "lazy"}
-                priority={index < 9}
-              />
-              <UnpicImage
                 src={url}
                 cdn="vercel"
                 alt="Visit Pinkosensitivism Hashtag on Instagram"
