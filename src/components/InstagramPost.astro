@@ -1,0 +1,44 @@
+---
+import { Image } from "@unpic/astro";
+import { blurhashToCssGradientString } from "@unpic/placeholder";
+
+type Props = {
+  url: string;
+  blurhash?: string;
+  nextPage?: number;
+  priority?: boolean;
+};
+
+const { url, blurhash, nextPage, priority = false } = Astro.props;
+---
+
+<li
+  class="aspect-square w-full"
+  {...nextPage
+    ? {
+        "hx-get": `/partials/posts/${nextPage}`,
+        "hx-trigger": "revealed",
+        "hx-swap": "afterend",
+      }
+    : {}}
+>
+  <a
+    href="https://www.instagram.com/explore/tags/pinkosensitivism/"
+    target="_blank"
+    rel="nofollow"
+    title="Visit Pinkosensitivism Hashtag on Instagram"
+    class="block h-full w-full transition-transform duration-300 hover:scale-105 hover:shadow"
+  >
+    <Image
+      src={url}
+      alt="Visit Pinkosensitivism Hashtag on Instagram"
+      width={500}
+      height={500}
+      sizes="(max-width: 768px) 40vw, 250px"
+      breakpoints={[250, 500]}
+      loading={priority ? "eager" : "lazy"}
+      priority={priority}
+      background={blurhash ? blurhashToCssGradientString(blurhash) : undefined}
+    />
+  </a>
+</li>

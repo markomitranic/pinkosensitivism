@@ -1,7 +1,6 @@
 ---
-import { Image } from "@unpic/astro";
-import { blurhashToCssGradientString } from "@unpic/placeholder";
 import Hero from "~/components/Hero.astro";
+import InstagramPost from "~/components/InstagramPost.astro";
 import { PostRepository } from "~/lib/PostRepository";
 import Layout from "../layouts/Layout.astro";
 import { cn } from "../lib/utils/cn";
@@ -22,29 +21,12 @@ const { posts, nextPage } = await PostRepository.getNewestPosts();
     >
       {
         posts.map(({ url, blurhash }, index) => (
-          <li class="aspect-square w-full">
-            <a
-              href="https://www.instagram.com/explore/tags/pinkosensitivism/"
-              target="_blank"
-              rel="nofollow"
-              title="Visit Pinkosensitivism Hashtag on Instagram"
-              class="block h-full w-full transition-transform duration-300 hover:scale-105 hover:shadow"
-            >
-              <Image
-                src={url}
-                alt="Visit Pinkosensitivism Hashtag on Instagram"
-                width={500}
-                height={500}
-                sizes="(max-width: 768px) 40vw, 250px"
-                breakpoints={[250, 500]}
-                loading={index < 9 ? "eager" : "lazy"}
-                priority={index < 9}
-                background={
-                  blurhash ? blurhashToCssGradientString(blurhash) : undefined
-                }
-              />
-            </a>
-          </li>
+          <InstagramPost
+            url={url}
+            blurhash={blurhash}
+            nextPage={posts.length - 1 === index ? nextPage : undefined}
+            priority={index < 9}
+          />
         ))
       }
     </ul>

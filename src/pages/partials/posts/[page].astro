@@ -1,0 +1,36 @@
+---
+export const partial = true;
+export const prerender = false;
+
+import InstagramPost from "~/components/InstagramPost.astro";
+import { PostRepository } from "~/lib/PostRepository";
+
+const page = parseInt(Astro.params.page!);
+
+if (isNaN(page) || page < 1) {
+  Astro.response.status = 404;
+  Astro.response.statusText = "Not found";
+  return new Response(null, { status: 404, statusText: "Not found" });
+}
+
+const posts = await PostRepository.page(page);
+
+if (posts.length === 0) {
+  Astro.response.status = 404;
+  Astro.response.statusText = "Not found";
+  return new Response(null, { status: 404, statusText: "Not found" });
+}
+
+Astro.response.headers.set("Cache-Control", "public, max-age=604800");
+Astro.response.headers.set("CDN-Cache-Control", "public, max-age=604800");
+---
+
+{
+  posts.map(({ url, blurhash }, index) => (
+    <InstagramPost
+      url={url}
+      blurhash={blurhash}
+      nextPage={posts.length - 1 === index ? page - 1 : undefined}
+    />
+  ))
+}

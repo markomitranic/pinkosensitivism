@@ -4,7 +4,7 @@ import { encode } from "blurhash";
 import { BlobStorage } from "./BlobStorage";
 import { filterNotEmpty } from "./utils/filterNotEmpty";
 
-const ITEMS_PER_PAGE = 21;
+const ITEMS_PER_PAGE = 42;
 
 export type PostSrc = {
   url: string;
