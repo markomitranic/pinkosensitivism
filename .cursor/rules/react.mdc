@@ -1,6 +1,6 @@
 ---
 description: 
-globs: 
+globs: *.tsx
 alwaysApply: false
 ---
 # Rules for working with React components
