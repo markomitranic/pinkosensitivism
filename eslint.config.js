@@ -93,4 +93,12 @@ export default tseslint.config(
       },
     },
   },
+  // Add Astro-specific overrides
+  {
+    files: ["**/*.astro"],
+    rules: {
+      // Disable rule causing errors with Response objects in Astro files
+      "@typescript-eslint/no-misused-promises": "off",
+    },
+  },
 );
