@@ -1,0 +1,38 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Rules for working with React components
+
+This is an Astro project, so react components can be used as either client, server or both render modes.
+
+<rule>
+name: client_data_fetching
+description: Standards for data fetching and state management in browser code
+actions:
+  - type: suggest
+    message: |
+      For data fetching and state management in the browser (client components):
+      1. ALWAYS use React Query (TanStack Query) for:
+         - Data fetching
+         - Loading states
+         - Error handling
+         - Cache management
+         - Mutations (create/update/delete)
+</rule>
+
+<rule>
+name: client_form_management
+description: Standards for form handling
+actions:
+  - type: suggest
+    message: |
+      For form management:
+      1. ALWAYS use React Hook Form for:
+         - Form state management
+         - Validation
+         - Error handling
+      2. NEVER use useState for form fields
+      3. Use shadcn/ui form components when available - they are pre-integrated with React Hook Form
+</rule>

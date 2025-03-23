@@ -1,20 +1,39 @@
 ---
-description: Working on my Asto JS based project.
-globs: 
+description: 
+globs: *.astro
+alwaysApply: false
 ---
-- Refer Astro documentation for detailed information idiomatic solutions, components, routing, integrations and more.
-    - Documentation: https://docs.astro.build/
-    - Github & Issues: https://github.com/withastro/astro
-    - Guides: https://docs.astro.build/en/guides/
-    - Tips: https://astro-tips.dev
-- Create .astro files for Astro components.
-- If needed, use framework-specific components (Solid, React) for client interactivity.
-- Leverage Astro's built-in components like <Image> when appropriate.
-- Utilize Tailwind's color palette as defined in src/styles/global.css
-- Minimize use of client-side components.
-- Use the client:* directives judiciously for partial hydration:
-  - client:load for immediately needed interactivity
-  - client:idle for non-critical interactivity
-  - client:visible for components that should hydrate when visible
-  - client:only for components that should only be rendered on the client
-- Utilize Astro's built-in asset optimization features. Implement proper lazy loading for images and other assets.
+# Astro Development Standards
+
+<rule>
+name: astro_standards
+description: Standards and best practices for Astro.js development
+filters:
+  - type: file_extension
+    pattern: "\\.(astro|jsx|tsx)$"
+  - type: event
+    pattern: "(file_create|file_edit)"
+
+actions:
+  - type: suggest
+    message: |
+      When developing with Astro.js:
+
+      1. Client-Side Hydration:
+         - Minimize client-side components
+         - Use appropriate client:* directives:
+           - client:load for immediately needed interactivity
+           - client:idle for non-critical interactivity
+           - client:visible for components that should hydrate when visible
+           - client:only for components that should only be rendered on the client
+
+      2. Documentation Resources:
+         - Official Docs: https://docs.astro.build/
+         - GitHub & Issues: https://github.com/withastro/astro
+         - Guides: https://docs.astro.build/en/guides/
+         - Tips: https://astro-tips.dev
+
+metadata:
+  priority: high
+  version: 1.0
+</rule>

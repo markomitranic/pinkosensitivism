@@ -1,0 +1,41 @@
+---
+description: Project-wide development standards and best practices
+globs: 
+alwaysApply: true
+---
+# Project-Wide Development Rules
+
+<rule>
+name: project_standards
+description: General development standards and best practices for the project
+filters:
+  - type: file_extension
+    pattern: "\\.(astro|jsx|tsx|js|ts)$"
+  - type: event
+    pattern: "(file_create|file_edit)"
+
+actions:
+  - type: suggest
+    message: |
+      When developing components:
+
+      1. Create .astro files for Astro components
+      2. Only use React components when client interactivity is required
+      3. Leverage built-in Astro components like <Image> for optimized performance
+
+examples:
+  - input: |
+      // Bad: Using React for static content
+      <ReactComponent>
+        <StaticContent />
+      </ReactComponent>
+
+      // Good: Using Astro for static content
+      <StaticContent />
+    output: "Following project component development standards"
+
+metadata:
+  priority: high
+  version: 1.0
+</rule>
+

@@ -1,0 +1,43 @@
+# Tailwind Development Standards
+
+<rule>
+name: tailwind_standards
+description: Standards for using Tailwind CSS in the project
+filters:
+  - type: file_extension
+    pattern: "\\.(astro|jsx|tsx|js|ts|css)$"
+  - type: event
+    pattern: "(file_create|file_edit)"
+
+actions:
+  - type: suggest
+    message: |
+      When using Tailwind CSS:
+
+      1. Color Palette:
+         - Always use the custom color palette defined in src/styles/global.css
+         - Do not use default Tailwind colors unless explicitly required
+         - Maintain consistent branding by sticking to the defined palette
+
+      2. Best Practices:
+         - Group related Tailwind classes for better readability
+         - Use @apply in CSS files for frequently reused class combinations
+         - Consider extracting complex combinations into reusable components
+
+examples:
+  - input: |
+      // Bad: Using default Tailwind colors
+      <div class="bg-blue-500">
+        Content
+      </div>
+
+      // Good: Using custom palette
+      <div class="bg-primary">
+        Content
+      </div>
+    output: "Following project Tailwind standards"
+
+metadata:
+  priority: high
+  version: 1.0
+</rule> 
