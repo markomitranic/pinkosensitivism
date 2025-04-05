@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "pnpm nodecheck && astro dev --port 3000",
-    "build": "astro build --remote",
+    "build": "pnpm nodecheck && astro build --remote",
     "preview": "astro preview",
     "start": "astro preview",
     "lint": "pnpm lint:style && pnpm lint:code && pnpm lint:typecheck",
